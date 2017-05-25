@@ -15,7 +15,7 @@ var app = express();
 // Use native Node promises
 mongoose.Promise = global.Promise;
 // connect to MongoDB
-mongoose.connect('mongodb://localhost/video_collection')
+mongoose.connect('mongodb://139.59.56.95/video_collection')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
@@ -52,4 +52,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+console.log("App Started");
 module.exports = app;
