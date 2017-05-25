@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <style>
+    table, th , td  {
+      border: 1px solid grey;
+      border-collapse: collapse;
+      padding: 5px;
+      text-align: center;
+    }
+    table tr:nth-child(odd) {
+      background-color: #f1f1f1;
+    }
+    table tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+    table td {
+      width:200px;
+      word-wrap:break-word;}
+  </style>
+  <body>
+    <h1><%= title %></h1>
+    <ng-view></ng-view>
+
+    <!-- Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
+
+    <!-- Template -->
+    <script type="text/ng-template" id="/videolist.html">
+      <div align="right" >
+        <button ng-click="addVideoForm()">Add</button>
+      </div>
+      <table>
+        <tr>
+          <th>VideoID</th>
+          <th>Video Title</th>
+          <th>Description</th>
+          <th>Age</th>
+          <th>Duration</th>
+          <th>Popularity</th>
+          <th>Category</th>
+          <th>Source</th>
+        </tr>
+        <tr ng-repeat="video in videos">
+          <td><a href="#/{{$index}}">{{ video.videoid }}</a></td>
+          <td>{{ video.title }}</td>
+          <td>{{ video.description }}</td>
+          <td>{{ video.age }}</td>
+          <td>{{ video.duration }}</td>
+          <td>{{ video.popularity }}</td>
+          <td>{{ video.category }}</td>
+          <td>{{ video.source_site }}</td>
+        </tr>
+      </table>
+      <!-- Search: <input type="text" ng-model="search.name">
+      <ul>
+        <li ng-repeat="todo in todos | filter: search">
+          <input type="checkbox" ng-model="todo.completed">
+          <a href="#/{{$index}}">{{todo.name}}</a>
+        </li>
+      </ul> -->
+    </script>
+
+    <script type="text/ng-template" id="/addVideo.html">
+      <h1>Add Video</h1>
+      <div ng-controller="AddVideoController">
+        <form novalidate>
+          VideoID:
+          <input type="text" ng-model="user.firstName"><br>
+          Video Title:
+          <input type="text" ng-model="user.lastName">
+          <br><br>
+          <button ng-click="reset()">RESET</button>
+        </form>
+        <p>form = {{user}}</p>
+        <p>master = {{master}}</p>
+      </div>
+    </script>
+
+    <script>
+      angular.module('app', ['ngRoute'])
+
+        //---------------
+        // Services
+        //---------------
+        .factory('Videos', ['$http', function($http){
+          return $http.get('/videos');
+        }])
+        // .factory('Videos', function(){
+        //   return [
+        //     { title:'Try not laughing - Pranks',
+        //       description:'Try not to laugh while watching this funniest video of chinese funny pranks. This video is really hilarious and impossible to not laugh',
+        //       videoid: '-J73lp3etxE',
+        //       age:18,
+        //       language: 'english',
+        //       duration: 10,
+        //       popularity: { likes: 13269, shares: 6022394},
+        //       category: ['funny'],
+        //       source_site: 'youtube.com'
+        //     },
+        //     { title:'Try not laughing - Pranks',
+        //         description:'Try not to laugh while watching this funniest video of chinese funny pranks. This video is really hilarious and impossible to not laugh',
+        //         videoid: '-J73lp3etxE',
+        //         age:18,
+        //         language: 'english',
+        //         duration: 10,
+        //         popularity: { likes: 13269, shares: 6022394},
+        //         category: ['funny'],
+        //         source_site: 'youtube.com'
+        //     },
+        //     { title:'Try not laughing - Pranks',
+        //           description:'Try not to laugh while watching this funniest video of chinese funny pranks. This video is really hilarious and impossible to not laugh',
+        //           videoid: '-J73lp3etxE',
+        //           age:18,
+        //           language: 'english',
+        //           duration: 10,
+        //           popularity: { likes: 13269, shares: 6022394},
+        //           category: ['funny'],
+        //           source_site: 'youtube.com'
+        //     }
+        //   ];
+        // })
+
+        //---------------
+        // Controllers
+        //---------------
+
+        // Controller
+        .controller('VideoListController', ['$scope', 'Videos','$location', function ($scope, Videos,$location) {
+          Videos.success(function(data){
+            $scope.videos = data;
+          }).error(function(data, status){
+            console.log(data, status);
+            $scope.videos = [];
+          });
+
+          $scope.addVideoForm = function(){
+            $location.url('addVideo');
+          }
+        }])
+
+
+        .controller('AddVideoController', ['$scope', 'Videos', function ($scope, Videos) {
+          $scope.master = {firstName:"John", lastName:"Doe"};
+          $scope.reset = function() {
+              $scope.user = angular.copy($scope.master);
+          };
+          $scope.reset();
+          $scope.addVideo = function(){
+
+          }
+        }])
+
+        //---------------
+        // Routes
+        //---------------
+
+        .config(['$routeProvider', function ($routeProvider) {
+          $routeProvider
+            .when('/', {
+              templateUrl: '/videolist.html',
+              controller: 'VideoListController'
+            })
+
+            $routeProvider.when('/addVideo', {
+              templateUrl: '/addVideo.html',
+              controller: 'AddVideoController'
+           });
+        }]);
+    </script>
+  </body>
+</html>
