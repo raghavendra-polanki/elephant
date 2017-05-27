@@ -7,7 +7,7 @@ var VideoModel = require('../models/VideoModel.js')
 
 /* GET /videos listing. */
 router.get('/', function(req, res, next) {
-  VideoModel.find(function (err, videos) {
+  VideoModel.find({}).sort({updated_at : -1}).exec(function (err, videos) {
     if (err) return next(err);
     res.json(videos);
   });
