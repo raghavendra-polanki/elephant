@@ -1,5 +1,8 @@
 DOCKER:=$(shell grep docker /proc/self/cgroup)
 
+GULP = ./node_modules/gulp/bin/gulp.js
+NODEMON = ./node_modules/nodemon/bin/nodemon.js
+
 install:
 	@echo Running make install...
 	@npm config set unsafe-perm true
@@ -7,8 +10,10 @@ install:
 
 run:
 	@echo Running make run...
-	@echo Starting nodejs...
-	@node index.js
+	@echo Starting gulp watch in background...
+	@nohup $(GULP) watch &
+	@echo Starting server via nodemon...
+	@$(NODEMON) index.js
 
 # to catch all default targets and do nothing
 .DEFAULT: ;

@@ -2,6 +2,6 @@
 
 global.__base = __dirname + '/';
 
-var $ = require(__base + 'lib');
+const $ = require(__base + 'lib');
 
 $.Server();
