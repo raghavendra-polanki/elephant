@@ -12,8 +12,22 @@ run:
 	@echo Running make run...
 ifdef DOCKER
 	@echo Setting up environment...
-	# This delay is to allow any linked containers to begin.
-	@sleep 10
+	@echo "Waiting for linked containers to start..."
+	@sleep 2
+	@echo "Waiting for linked containers to start..."
+	@sleep 2
+	@echo "Waiting for linked containers to start..."
+	@sleep 2
+	@echo "Waiting for linked containers to start..."
+	@sleep 2
+	@echo "Waiting for linked containers to start..."
+	@sleep 2
+	@echo "Waiting for linked containers to start..."
+	@sleep 2
+	@echo "Waiting for linked containers to start..."
+	@sleep 2
+	@echo "Waiting for linked containers to start..."
+	@sleep 2
 	@echo Starting gulp watch in background...
 	@nohup $(GULP) watch &
 	@echo Starting server via nodemon...
