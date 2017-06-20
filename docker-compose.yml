@@ -1,25 +1,23 @@
-app:
+version: '2'
+services:
+  app:
     build: .
     command: make run
     volumes:
-        - .:/elephant
+      - ./:/elephant
     environment:
-        NODE_ENV: dev
+      NODE_ENV: dev
     ports:
-        - "17883:17883"
+      - "17883:17883"
     links:
-       - mongo
-    log_driver: "json-file"
-    log_opt:
-       max-size: "10k"
-       max-file: "20"
-mongo:
-   image: mongo:3.4.5
-   volumes:
+      - mongo
+    logging:
+      driver: "json-file"
+  mongo:
+     image: mongo:3.4.5
+     volumes:
        - ~/workspace/data/mongo:/data/db:rw
-   ports:
+     ports:
        - "27017:27017"
-   log_driver: "json-file"
-   log_opt:
-      max-size: "10k"
-      max-file: "20"
+     logging:
+       driver: "json-file"
