@@ -1875,6 +1875,11 @@
         }
       }
     },
+    "moment-timezone": {
+      "version": "0.5.13",
+      "from": "moment-timezone@latest",
+      "resolved": "https://registry.npmjs.org/moment-timezone/-/moment-timezone-0.5.13.tgz"
+    },
     "mongodb": {
       "version": "2.2.27",
       "from": "mongodb@2.2.27",
