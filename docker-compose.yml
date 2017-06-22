@@ -6,7 +6,7 @@ services:
     volumes:
       - ./:/elephant
     environment:
-      NODE_ENV: dev
+      NODE_ENV: development
     ports:
       - "17883:17883"
     links:
