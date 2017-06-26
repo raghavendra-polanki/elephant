@@ -31,7 +31,7 @@ ifdef DOCKER
 	@echo Starting gulp watch in background...
 	@nohup $(GULP) watch &
 	@echo Starting server via nodemon...
-	@$(NODEMON) index.js
+	@$(NODEMON) application/index.js
 else
 	@echo Error: Project is configured to only run inside a docker container!
 	@echo Refer to README.md for usage instructions.

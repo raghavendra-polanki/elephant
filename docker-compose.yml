@@ -5,7 +5,8 @@ services:
     image: elephant
     command: make run
     volumes:
-      - .:/elephant
+      - ./application:/elephant/application
+      - ./package.json:/elephant/package.json
     environment:
       NODE_ENV: development
     ports:
