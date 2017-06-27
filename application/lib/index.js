@@ -43,7 +43,7 @@ const registerUtilities = function() {
 
     $.utils = {};
     let files = getUtilities();
-    files.forEach(function(file) {
+    files.forEach((file) => {
         console.log(file);
         let fileName = Path.basename(file);
         let utilityName = fileName.substring(0, fileName.indexOf('Utility'));
@@ -71,6 +71,7 @@ const init = function() {
   $.path.routes = Path.resolve($.path.root + '/lib/routes');
   $.path.utils = Path.resolve($.path.root + '/lib/utils');
   $.path.plugins = Path.resolve($.path.root + '/lib/plugins');
+  $.path.models = Path.resolve($.path.root + '/lib/models');
 
   registerUtilities();
 };
@@ -81,7 +82,7 @@ const registerPlugins = function() {
   return new Promise((resolve, reject) => {
     Async.forEachOfSeries(internals.serverConf.plugins,
     function(pluginParams, pluginName, callback) {
-      console.log('\nRegistering plugin: ' + pluginName);
+      console.log('\n===== Registering plugin: ' + pluginName + '=====');
 
       require($.path.plugins + '/' + pluginName)(pluginParams)
       .then((plugin) => {
