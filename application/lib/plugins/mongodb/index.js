@@ -36,8 +36,13 @@ const registerModels = function() {
 
 module.exports = (options, callback) => {
   return new Promise((resolve, reject) => {
-    dbConnection = Mongoose.createConnection('mongodb://' + options.host +
-      ':' + options.port + '/' + options.db);
+    let mongodbAddress = 'mongodb://' + options.host + ':' + options.port + '/'
+        + options.db;
+    dbConnection = Mongoose.createConnection(mongodbAddress, {
+      config: {
+        autoIndex: false, // disable automatic creation of indices on load.
+      },
+    });
 
     dbConnection.on('connecting', () => {
       console.log('Connecting to mongo database');
