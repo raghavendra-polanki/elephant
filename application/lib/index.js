@@ -64,7 +64,7 @@ const init = function() {
   console.log('\nInitializing app...');
   $.NODE_ENV = process.env.NODE_ENV;
   console.log('Environment: ' + $.NODE_ENV);
-  console.log(process.env);
+  // console.log(process.env);
 
   $.path = {};
   $.path.root = Path.resolve(__dirname + '/..');
@@ -72,6 +72,9 @@ const init = function() {
   $.path.utils = Path.resolve($.path.root + '/lib/utils');
   $.path.plugins = Path.resolve($.path.root + '/lib/plugins');
   $.path.models = Path.resolve($.path.root + '/lib/models');
+  $.path.conf = Path.resolve($.path.root + '/lib/etc');
+
+  $.constants = require($.path.conf + '/constants');
 
   registerUtilities();
 };
