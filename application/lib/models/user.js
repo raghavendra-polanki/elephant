@@ -42,7 +42,7 @@ module.exports = new Mongoose.Schema({
     	'30 to 50',
     	'above 50',
     ],
-  }
+  },
   created_at: Number,
   updated_at: Number,
 }, {
