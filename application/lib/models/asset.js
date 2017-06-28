@@ -1,5 +1,7 @@
 'use strict';
 
+const $ = require(__base + 'lib');
+
 const Mongoose = require('mongoose');
 
 module.exports = new Mongoose.Schema({
@@ -18,7 +20,7 @@ module.exports = new Mongoose.Schema({
       val: String,
       lang: {
         type: String,
-        enum: ['ENGLISH', 'HINDI'],
+        enum: $.constants.supportedLanguages,
       },
     },
   ],
@@ -27,14 +29,14 @@ module.exports = new Mongoose.Schema({
       val: String,
       lang: {
         type: String,
-        enum: ['ENGLISH', 'HINDI'],
+        enum: $.constants.supportedLanguages,
       },
     },
   ],
   length: Number,
   lang: {
     val: String,
-    enum: ['ENGLISH', 'HINDI'],
+    enum: $.constants.supportedLanguages,
   },
   rating: {
     val: String,
