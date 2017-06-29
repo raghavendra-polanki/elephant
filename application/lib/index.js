@@ -20,7 +20,7 @@ internals.serverConf = {
     },
   },
   plugins: {
-    mongodb: {
+    mongoose: {
       host: process.env.MONGO_PORT_27017_TCP_ADDR,
       port: process.env.MONGO_PORT_27017_TCP_PORT,
       db: 'vilo-dev',
@@ -95,7 +95,7 @@ const registerPlugins = function() {
         })
         .catch((err) => {
           console.error(err);
-          callback(err)
+          callback(err);
         });
       } catch (exception) {
         console.error(exception);
