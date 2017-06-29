@@ -5,7 +5,8 @@ const Moment = require('moment-timezone');
 let externals = {};
 
 /**
- * currentYearMonth returns the current date's year and month in YYMM format.
+ * currentYearMonthDate returns the current date's year and month in YYMMDD
+ * format.
  *
  * @return {string}
  */
