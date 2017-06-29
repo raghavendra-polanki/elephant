@@ -85,14 +85,22 @@ const registerPlugins = function() {
   return new Promise((resolve, reject) => {
     Async.forEachOfSeries(internals.serverConf.plugins,
     function(pluginParams, pluginName, callback) {
-      console.log('\n===== Registering plugin: ' + pluginName + '=====');
+      console.log('\n===== Registering plugin: ' + pluginName + ' =====');
 
-      require($.path.plugins + '/' + pluginName)(pluginParams)
-      .then((plugin) => {
-        $[pluginName] = plugin;
-        callback();
-      })
-      .catch((err) => callback(err));
+      try {
+        require($.path.plugins + '/' + pluginName)(pluginParams)
+        .then((plugin) => {
+          $[pluginName] = plugin;
+          callback();
+        })
+        .catch((err) => {
+          console.error(err);
+          callback(err)
+        });
+      } catch (exception) {
+        console.error(exception);
+        callback(exception);
+      }
     },
     function(err) {
       if (err) {
