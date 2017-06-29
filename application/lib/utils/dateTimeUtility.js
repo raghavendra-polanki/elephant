@@ -9,8 +9,8 @@ let externals = {};
  *
  * @return {string}
  */
-externals.currentYearMonth = function() {
-  return Moment().tz('Asia/Kolkata').format('YYMM');
+externals.currentYearMonthDate = function() {
+  return Moment().tz('Asia/Kolkata').format('YYMMDD');
 };
 
 module.exports = externals;
