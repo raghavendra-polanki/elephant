@@ -38,6 +38,9 @@ module.exports = new Mongoose.Schema({
     val: String,
     enum: $.constants.supportedLanguages,
   },
+  categories: [
+    String, // these are category_ids.
+  ],
   rating: {
     val: String,
     enum: ['U', 'UA', 'A'],
