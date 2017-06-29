@@ -22,6 +22,7 @@
     "glob": "https://registry.npmjs.org/glob/-/glob-4.5.3.tgz",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
+    "mongodb": "^2.2.29",
     "mongoose": "^4.10.7",
     "shrinkwrap": "^0.4.0"
   },
