@@ -77,7 +77,7 @@ const init = function() {
   $.path.utils = Path.resolve($.path.root + '/lib/utils');
   $.path.plugins = Path.resolve($.path.root + '/lib/plugins');
   $.path.models = Path.resolve($.path.root + '/lib/models');
-  $.path.conf = Path.resolve($.path.root + '/lib/etc');
+  $.path.conf = Path.resolve($.path.root + '/etc');
 
   $.constants = require($.path.conf + '/constants');
 
