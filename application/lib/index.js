@@ -4,6 +4,8 @@ const Async = require('async');
 const Express = require('express');
 const Glob = require('glob');
 const Path = require('path');
+const Promise = require('bluebird');
+const Seneca = require('seneca')();
 
 // internals
 const internals = {
@@ -80,6 +82,12 @@ const init = function() {
   $.path.conf = Path.resolve($.path.root + '/etc');
 
   $.constants = require($.path.conf + '/constants');
+
+  // add seneca object to global lib object.
+  $.seneca = Seneca;
+  // promisify seneca to use promises instead of callbacks to avoid callback
+  // hell.
+  $.act = Promise.promisify($.seneca.act, {context: $.seneca});
 
   registerUtilities();
 };
