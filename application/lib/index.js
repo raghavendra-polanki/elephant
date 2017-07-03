@@ -32,6 +32,7 @@ internals.serverConf = {
       port: process.env.MONGO_PORT_27017_TCP_PORT,
       db: 'vilo-dev',
     },
+    services: {},
   },
 };
 
@@ -79,6 +80,7 @@ const init = function() {
   $.path.utils = Path.resolve($.path.root + '/lib/utils');
   $.path.plugins = Path.resolve($.path.root + '/lib/plugins');
   $.path.models = Path.resolve($.path.root + '/lib/models');
+  $.path.services = Path.resolve($.path.root + '/lib/services');
   $.path.conf = Path.resolve($.path.root + '/etc');
 
   $.constants = require($.path.conf + '/constants');
