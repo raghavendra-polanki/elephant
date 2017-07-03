@@ -20,7 +20,7 @@ Router.get('/', function(req, res) {
 			{upsert: true, new: true}, (err, doc) => {
 				console.log(err);
 				console.log(doc);
-				res.send(200, doc.value.count);
+				res.status(200).send('"' + doc.value.count + '"');
 			});
 });
 
