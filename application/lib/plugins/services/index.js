@@ -13,7 +13,7 @@ const getServices = function() {
     return Glob.sync($.path.services + '/**/*Service.js', options);
 };
 
-module.exports = (options, callback) => {
+module.exports = (options) => {
   return new Promise((resolve, reject) => {
     let services = getServices();
     services.forEach(function(file) {

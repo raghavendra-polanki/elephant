@@ -34,7 +34,7 @@ const registerModels = function() {
   });
 };
 
-module.exports = (options, callback) => {
+module.exports = (options) => {
   return new Promise((resolve, reject) => {
     let mongodbAddress = 'mongodb://' + options.host + ':' + options.port + '/'
         + options.db;

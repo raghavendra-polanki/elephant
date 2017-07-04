@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 let externals = {};
 
-module.exports = (options, callback) => {
+module.exports = (options) => {
   return new Promise((resolve, reject) => {
     let mongodbAddress = 'mongodb://' + options.host + ':' + options.port + '/'
         + options.db;
