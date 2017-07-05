@@ -23,16 +23,16 @@ Router.get('/', function(req, res) {
 	// 			res.status(200).send('"' + doc.value.count + '"');
 	// 		});
 
-			$.act({
-					cmd: 'generate_asset_id',
-			})
-			.then((id) => {
-				res.status(200).send(id.toString());
-			})
-			.catch((err) => {
-				console.error(err);
-				res.status(500).send('something went wrong');
-			});
+	$.act({
+		cmd: 'generate_asset_id',
+	})
+	.then((id) => {
+		res.status(200).send(id.toString());
+	})
+	.catch((err) => {
+		console.error(err);
+		res.status(500).send('something went wrong');
+	});
 });
 
 module.exports = Router;
