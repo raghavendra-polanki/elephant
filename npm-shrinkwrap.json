@@ -665,9 +665,9 @@
       }
     },
     "eslint-config-google": {
-      "version": "0.8.1",
-      "from": "eslint-config-google@>=0.8.0 <0.9.0",
-      "resolved": "https://registry.npmjs.org/eslint-config-google/-/eslint-config-google-0.8.1.tgz",
+      "version": "0.9.1",
+      "from": "eslint-config-google@>=0.9.1 <0.10.0",
+      "resolved": "https://registry.npmjs.org/eslint-config-google/-/eslint-config-google-0.9.1.tgz",
       "dev": true
     },
     "eslint-scope": {
