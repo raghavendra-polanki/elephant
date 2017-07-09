@@ -19,6 +19,7 @@
   "dependencies": {
     "async": "https://registry.npmjs.org/async/-/async-2.1.4.tgz",
     "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "glob": "https://registry.npmjs.org/glob/-/glob-4.5.3.tgz",
     "moment": "^2.18.1",
