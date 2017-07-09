@@ -85,11 +85,16 @@ const init = function() {
 
   $.constants = require($.path.conf + '/constants');
 
+  // adding bluebird's promise to global object to develop habit of using
+  // bluebird only for promises. In absense of bluebird, node silently uses
+  // default javascript promises which breaks seneca promisifying.
+  $.promise = Promise;
+
   // add seneca object to global lib object.
   $.seneca = Seneca;
   // promisify seneca to use promises instead of callbacks to avoid callback
   // hell.
-  $.act = Promise.promisify($.seneca.act, {context: $.seneca});
+  $.act = $.promise.promisify($.seneca.act, {context: $.seneca});
 
   registerUtilities();
 };
@@ -97,7 +102,7 @@ const init = function() {
 const registerPlugins = function() {
   console.log('\n============ Registering plugins... ============');
 
-  return new Promise((resolve, reject) => {
+  return new $.promise((resolve, reject) => {
     Async.forEachOfSeries(internals.serverConf.plugins,
     function(pluginParams, pluginName, callback) {
       console.log('\n===== Registering plugin: ' + pluginName + ' =====');
@@ -132,7 +137,7 @@ const startServers = function() {
   console.log('\n============ Starting Servers ============');
   internals.server = {};
 
-  return new Promise((resolve, reject) => {
+  return new $.promise((resolve, reject) => {
     try {
       Async.eachSeries(internals.serverConf.connections,
       function(connection, callback) {

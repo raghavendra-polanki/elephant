@@ -14,7 +14,7 @@ const getServices = function() {
 };
 
 module.exports = (options) => {
-  return new Promise((resolve, reject) => {
+  return new $.promise((resolve, reject) => {
     let services = getServices();
     services.forEach(function(file) {
       console.log(file);

@@ -1,11 +1,13 @@
 'use strict';
 
+const $ = require(__base + 'lib');
+
 const MongoClient = require('mongodb').MongoClient;
 
 let externals = {};
 
 module.exports = (options) => {
-  return new Promise((resolve, reject) => {
+  return new $.promise((resolve, reject) => {
     let mongodbAddress = 'mongodb://' + options.host + ':' + options.port + '/'
         + options.db;
     MongoClient.connect(mongodbAddress, function(err, db) {

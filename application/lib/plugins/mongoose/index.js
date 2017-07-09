@@ -5,7 +5,6 @@ const $ = require(__base + 'lib');
 const Glob = require('glob');
 const Mongoose = require('mongoose');
 const Path = require('path');
-const Promise = require('bluebird');
 
 let dbConnection;
 
@@ -35,7 +34,7 @@ const registerModels = function() {
 };
 
 module.exports = (options) => {
-  return new Promise((resolve, reject) => {
+  return new $.promise((resolve, reject) => {
     let mongodbAddress = 'mongodb://' + options.host + ':' + options.port + '/'
         + options.db;
     dbConnection = Mongoose.createConnection(mongodbAddress, {
