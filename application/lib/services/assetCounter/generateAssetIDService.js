@@ -7,8 +7,8 @@ module.exports = {
     cmd: 'generate_asset_id',
   },
   description: 'Service to generate a new asset ID',
-  handler: (message, next) => {
-    console.log('inside generate_asset_id');
+  handler: (message, callback) => {
+    console.log('inside generate_asset_id service');
 
     $.mongodb.db.collection('asset_counter').findAndModify(
       {prefix: $.utils.dateTime.currentYearMonthDate()}, [],
@@ -16,9 +16,9 @@ module.exports = {
       {upsert: true, new: true}, (err, doc) => {
         if (err != null) {
           console.error(err);
-          return next(err, null);
+          return callback(err, null);
         }
-        return next(doc.value.count, null);
+        return callback(null, {id: doc.value.count});
       });
   },
 };
