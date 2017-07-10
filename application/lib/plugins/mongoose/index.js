@@ -6,6 +6,8 @@ const Glob = require('glob');
 const Mongoose = require('mongoose');
 const Path = require('path');
 
+Mongoose.promise = $.promise;
+
 let dbConnection;
 
 const getModels = function() {

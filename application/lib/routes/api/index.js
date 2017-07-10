@@ -3,12 +3,12 @@
 const $ = require(__base + 'lib');
 
 const Express = require('express');
-const BodyParser = require('body-parser')
+const BodyParser = require('body-parser');
 
 const Router = Express.Router();
 
 Router.use(BodyParser.json());
-Router.use(BodyParser.urlencoded({ extended: true }));
+Router.use(BodyParser.urlencoded({extended: true}));
 
 Router.get('/', function(req, res) {
 	// $.model.Test.create({
