@@ -4,7 +4,7 @@ const Async = require('async');
 const Express = require('express');
 const Glob = require('glob');
 const Path = require('path');
-const Promise = require('bluebird');
+const Bluebird = require('bluebird');
 const Seneca = require('seneca')();
 
 // internals
@@ -88,7 +88,7 @@ const init = function() {
   // adding bluebird's promise to global object to develop habit of using
   // bluebird only for promises. In absense of bluebird, node silently uses
   // default javascript promises which breaks seneca promisifying.
-  $.promise = Promise;
+  $.promise = Bluebird;
 
   // add seneca object to global lib object.
   $.seneca = Seneca;
