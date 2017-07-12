@@ -2,17 +2,30 @@
 
 const $ = require(__base + 'lib');
 
-const replyWithValidationError = (res, error) => {
-  if (error.name == 'ValidationError') {
-    let valErrors = [];
-    for (let field in error.errors) {
-      valErrors.push(error.errors[field].message);
-    }
-    res.status(500).json({err: valErrors});
-  } else {
-    res.status(500).json({err: 'error while validating schema'});
-  }
-};
+// const compileValidationErrors = (error) => {
+//   if (error.name == 'ValidationError') {
+//     let valErrors = [];
+//     for (let field in error.errors) {
+//       valErrors.push(error.errors[field].message);
+//     }
+//     return valErrors;
+//   } else {
+//     return 'error while validating schema';
+//   }
+// };
+//
+// const validateInstanceSchema = (instance) => {
+//   return new $.promise((resolve, reject)=> {
+//     instance.validate((err) => {
+//       if (err) {
+//         console.error(err);
+//         reject(compileValidationErrors(err));
+//       } else {
+//         resolve();
+//       }
+//     });
+//   });
+// };
 
 module.exports = function(req, res, next) {
   console.log('inside /api/insert_category');
@@ -22,14 +35,15 @@ module.exports = function(req, res, next) {
   let categoryData = new $.model.Category(req.body);
   console.log(categoryData);
 
-  categoryData.validate((err) => {
-    if (err) {
-      console.error(err);
-      replyWithValidationError(res, err);
-    } else {
-      console.log('valid');
-      res.status(200).json({'a': 1});
-    }
+  console.log($);
+
+  $.utils.validation.validateInstanceSchema(categoryData)
+  .then(() => {
+    console.log('valid');
+    res.status(200).json({'a': 1});
+  })
+  .catch((err) => {
+    res.status(500).json({err: err});
   });
 
   // $.act({

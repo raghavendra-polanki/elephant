@@ -10,7 +10,7 @@ let externals = {};
  *
  * @return {string}
  */
-externals.currentYearMonthDate = function() {
+externals.currentYearMonthDate = () => {
   return Moment().tz('Asia/Kolkata').format('YYMMDD');
 };
 
