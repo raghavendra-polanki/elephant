@@ -6,7 +6,7 @@ const replyWithValidationError = (res, error) => {
   if (error.name == 'ValidationError') {
     let valErrors = [];
     for (let field in error.errors) {
-      valErrors.push(error.errors[field].message)
+      valErrors.push(error.errors[field].message);
     }
     res.status(500).json({err: valErrors});
   } else {

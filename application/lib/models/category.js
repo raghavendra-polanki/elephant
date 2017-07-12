@@ -29,7 +29,9 @@ module.exports = new Mongoose.Schema({
       message: 'A Category must have atleast one valid name.',
     },
   },
-  parent: String, // this is category_id.
+  parent: [ // these are category_id.
+    String,
+  ],
 }, {
   bufferCommands: false, // disable command buffering.
   collection: 'assets',
