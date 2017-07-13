@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = {
-  supportedLanguages: ['ENGLISH', 'HINDI'],
+  defaultLanguage: 'english',
+  supportedLanguages: ['english', 'hindi'],
 };
