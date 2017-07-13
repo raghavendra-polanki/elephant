@@ -5,31 +5,37 @@ const $ = require(__base + 'lib');
 const Mongoose = require('mongoose');
 
 module.exports = new Mongoose.Schema({
-  category_id: String, // not adding required validator since we will be running
-                       // validation before generating category_id to avoid
+  category_id: String, // not adding 'required' validator validations wil be
+                       // running before generating category_id to avoid
                        // dangling ids in database in case of validation fails.
   name: {
-    type: [
-      {
-        val: {
-          type: String,
-          required: true,
-        },
-        lang: {
-          type: String,
-          enum: $.constants.supportedLanguages,
-          required: true,
-        },
-      },
-    ],
+    type: Mongoose.Schema.Types.Mixed,
     validate: {
-      validator: function(names) {
-        return names.length;
+      validator: function(data) {
+        if (!Object.keys(data).length) {
+          return false;
+        }
+        let hasDefaultLanguage = false;
+        let hasUnsupportedLanguage = false;
+        Object.keys(data).forEach((lang) => {
+          if ($.constants.supportedLanguages
+              .indexOf(lang.toLowerCase()) === -1) {
+            hasUnsupportedLanguage = true;
+          }
+          if (lang.toLowerCase() === $.constants.defaultLanguage) {
+            hasDefaultLanguage = true;
+          }
+        });
+
+        if (!hasDefaultLanguage || hasUnsupportedLanguage) {
+          return false;
+        }
+        return true;
       },
-      message: 'A Category must have atleast one valid name.',
+      message: 'Category names are not valid.',
     },
   },
-  parent: [ // these are category_id.
+  children: [ // these are category_ids.
     String,
   ],
 }, {
