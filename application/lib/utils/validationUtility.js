@@ -7,7 +7,7 @@ let externals = {};
 const compileValidationErrors = (error) => {
   if (error.name == 'ValidationError') {
     let valErrors = [];
-    for (let field in error.errors) {
+    for (let field of error.errors) {
       valErrors.push(error.errors[field].message);
     }
     return valErrors;
@@ -17,7 +17,6 @@ const compileValidationErrors = (error) => {
 };
 
 externals.validateInstanceSchema = (instance) => {
-  console.log($);
   return new $.promise((resolve, reject) => {
     instance.validate((err) => {
       if (err) {

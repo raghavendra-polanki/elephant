@@ -2,31 +2,6 @@
 
 const $ = require(__base + 'lib');
 
-// const compileValidationErrors = (error) => {
-//   if (error.name == 'ValidationError') {
-//     let valErrors = [];
-//     for (let field in error.errors) {
-//       valErrors.push(error.errors[field].message);
-//     }
-//     return valErrors;
-//   } else {
-//     return 'error while validating schema';
-//   }
-// };
-//
-// const validateInstanceSchema = (instance) => {
-//   return new $.promise((resolve, reject)=> {
-//     instance.validate((err) => {
-//       if (err) {
-//         console.error(err);
-//         reject(compileValidationErrors(err));
-//       } else {
-//         resolve();
-//       }
-//     });
-//   });
-// };
-
 module.exports = function(req, res, next) {
   console.log('inside /api/insert_category');
 
@@ -34,8 +9,6 @@ module.exports = function(req, res, next) {
 
   let categoryData = new $.model.Category(req.body);
   console.log(categoryData);
-
-  console.log($);
 
   $.utils.validation.validateInstanceSchema(categoryData)
   .then(() => {
