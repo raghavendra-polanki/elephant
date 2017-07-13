@@ -7,9 +7,11 @@ let externals = {};
 const compileValidationErrors = (error) => {
   if (error.name == 'ValidationError') {
     let valErrors = [];
-    for (let field of error.errors) {
+
+    Object.keys(error.errors).forEach((field) => {
       valErrors.push(error.errors[field].message);
-    }
+    });
+
     return valErrors;
   } else {
     return 'error while validating schema';
