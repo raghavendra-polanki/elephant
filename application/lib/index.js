@@ -46,22 +46,6 @@ const getUtilities = function() {
     return Glob.sync($.path.utils + '/*Utility.js', options);
 };
 
-const registerUtilities = function() {
-    console.log('\n============ Registering Utility Libraries... ============');
-
-    $.utils = {};
-    let files = getUtilities();
-    files.forEach((file) => {
-        console.log(file);
-        let fileName = Path.basename(file);
-        let utilityName = fileName.substring(0, fileName.indexOf('Utility'));
-
-        $.utils[utilityName] = require(file);
-    });
-
-    console.log('============ Registered Utility Libraries! ============');
-};
-
 const addRoutes = function(app, label) {
   console.log('Adding "' + label + '" routes...');
 
@@ -95,8 +79,25 @@ const init = function() {
   // promisify seneca to use promises instead of callbacks to avoid callback
   // hell.
   $.act = $.promise.promisify($.seneca.act, {context: $.seneca});
+};
 
-  registerUtilities();
+const registerUtilities = function() {
+    console.log('\n============ Registering Utility Libraries... ============');
+
+    return new $.promise((resolve, reject) => {
+      $.utils = {};
+      let files = getUtilities();
+      files.forEach((file) => {
+          console.log(file);
+          let fileName = Path.basename(file);
+          let utilityName = fileName.substring(0, fileName.indexOf('Utility'));
+
+          $.utils[utilityName] = require(file);
+      });
+
+      console.log('============ Registered Utility Libraries! ============');
+      return resolve();
+    });
 };
 
 const registerPlugins = function() {
@@ -189,7 +190,8 @@ $.Server = function() {
   if (internals.server && internals.status === 'ON') {
       return internals.server;
   } else if (internals.status === 'OFF') {
-    registerPlugins()
+    registerUtilities()
+    .then(registerPlugins)
     .then(startServers)
     .catch((err) => {
       console.error('Unable to start application!');

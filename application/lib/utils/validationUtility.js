@@ -18,7 +18,7 @@ const compileValidationErrors = (error) => {
 
 externals.validateInstanceSchema = (instance) => {
   console.log($);
-  return new $.promise((resolve, reject)=> {
+  return new $.promise((resolve, reject) => {
     instance.validate((err) => {
       if (err) {
         console.error(err);
