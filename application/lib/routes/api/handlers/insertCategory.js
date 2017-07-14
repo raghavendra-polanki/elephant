@@ -2,29 +2,40 @@
 
 const $ = require(__base + 'lib');
 
+const processRequest = async (req, res, next) => {
+  let categoryData;
+  try {
+    categoryData = new $.model.Category(req.body);
+    await $.utils.validation.validateInstanceSchema(categoryData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({status: 'INVALID_ARGUMENT', error: err});
+  }
+
+  try {
+    let categoryID = await $.act({cmd: 'generate_category_id'});
+    categoryData.set({
+      category_id: categoryID.id,
+    });
+    await categoryData.save();
+    return categoryID;
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({status: 'INTERNAL', error: err});
+  }
+};
+
 module.exports = function(req, res, next) {
   console.log('inside /api/insert_category');
 
-  let categoryData = new $.model.Category(req.body);
-
-  $.utils.validation.validateInstanceSchema(categoryData)
-  .then(() => {
-    console.log('valid');
-    return $.act({
-      cmd: 'generate_category_id',
-    });
-  })
-  .then((result) => {
-    console.log('generate_category_id returned');
-    console.log(result);
-    return categoryData.save();
-  })
-  .then(() => {
-    console.log('inserted');
-    res.status(200).json({status: 0});
+  processRequest(req, res, next)
+  .then((data) => {
+    if (data !== undefined) {
+      res.status(200).json({status: 'OK', data: data});
+    }
   })
   .catch((err) => {
-    console.error('in catch()');
-    res.status(500).json({err: err});
+    console.log(err);
+    res.status(500).json({status: 'INTERNAL', error: err});
   });
 };
