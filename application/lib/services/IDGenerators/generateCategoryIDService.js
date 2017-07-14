@@ -9,7 +9,7 @@ module.exports = {
   description: 'Service to generate a new category ID',
   handler: (message, callback) => {
     $.mongodb.db.collection('category_counter').findAndModify(
-      {prefix: $.utils.dateTime.currentYearMonthDate()}, [],
+      {prefix: $.utils.dateTime.CurrentYYMMDD()}, [],
       {$inc: {count: 1}},
       {upsert: true, new: true}, (err, doc) => {
         if (err != null) {

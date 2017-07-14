@@ -11,7 +11,7 @@ module.exports = {
     console.log('inside generate_asset_id service');
 
     $.mongodb.db.collection('asset_counter').findAndModify(
-      {prefix: $.utils.dateTime.currentYearMonthDate()}, [],
+      {prefix: $.utils.dateTime.CurrentYYMMDD()}, [],
       {$inc: {count: 1}},
       {upsert: true, new: true}, (err, doc) => {
         if (err != null) {
