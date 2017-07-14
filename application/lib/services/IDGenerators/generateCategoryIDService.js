@@ -8,8 +8,6 @@ module.exports = {
   },
   description: 'Service to generate a new category ID',
   handler: (message, callback) => {
-    console.log('inside generate_category_id service');
-
     $.mongodb.db.collection('category_counter').findAndModify(
       {prefix: $.utils.dateTime.currentYearMonthDate()}, [],
       {$inc: {count: 1}},
