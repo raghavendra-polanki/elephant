@@ -6,7 +6,7 @@ const processRequest = async (req, res, next) => {
   let categoryData;
   try {
     categoryData = new $.model.Category(req.body);
-    // validate category schema
+    // validate category schema.
     await $.utils.validation.validateInstanceSchema(categoryData);
   } catch (err) {
     console.error(err);
@@ -33,13 +33,13 @@ const processRequest = async (req, res, next) => {
       return;
     }
 
-    // generate a new category_id
+    // generate a new category_id.
     let categoryID = await $.act({cmd: 'generate_category_id'});
     categoryData.set({
       category_id: categoryID.id,
     });
 
-    // save category in database
+    // save category in database.
     await categoryData.save();
 
     return categoryID;
@@ -51,7 +51,7 @@ const processRequest = async (req, res, next) => {
 };
 
 module.exports = function(req, res, next) {
-  console.log('inside /api/insert_category');
+  $.log.Info('inside /api/insert_category');
 
   processRequest(req, res, next)
   .then((data) => {
