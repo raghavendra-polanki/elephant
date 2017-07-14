@@ -33,6 +33,7 @@ internals.serverConf = {
       db: 'vilo-dev',
     },
     services: {},
+    log: {},
   },
 };
 
