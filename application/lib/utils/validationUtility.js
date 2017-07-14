@@ -43,16 +43,10 @@ externals.validateSchemaNames = [
   },
   {
     validator: function(data) {
-      let hasUnsupportedLanguage = false;
-      Object.keys(data).forEach((lang) => {
-        if ($.constants.supportedLanguages
-            .indexOf(lang.toLowerCase()) === -1) {
-          hasUnsupportedLanguage = true;
+      for (let lang in data) {
+        if ($.constants.supportedLanguages.indexOf(lang.toLowerCase()) === -1) {
+          return false;
         }
-      });
-
-      if (hasUnsupportedLanguage) {
-        return false;
       }
       return true;
     },
@@ -60,17 +54,12 @@ externals.validateSchemaNames = [
   },
   {
     validator: (data) => {
-      let hasDefaultLanguage = false;
-      Object.keys(data).forEach((lang) => {
+      for (let lang in data) {
         if (lang.toLowerCase() === $.constants.defaultLanguage) {
-          hasDefaultLanguage = true;
+          return true;
         }
-      });
-
-      if (!hasDefaultLanguage) {
-        return false;
       }
-      return true;
+      return false;
     },
     message: 'Category must have a name in english.',
   },
