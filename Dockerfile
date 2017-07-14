@@ -1,4 +1,4 @@
-FROM surenderthakran/nodejs:v6
+FROM node:8 # TODO(surenderthakran): use our own image instead
 
 ADD . /elephant
 
