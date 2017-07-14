@@ -8,7 +8,7 @@ module.exports = new Mongoose.Schema({
   category_id: String, // not adding 'required' validator validations wil be
                        // running before generating category_id to avoid
                        // dangling ids in database in case of validation fails.
-  name: {
+  names: {
     type: Mongoose.Schema.Types.Mixed,
     validate: $.utils.validation.validateSchemaNames,
   },
