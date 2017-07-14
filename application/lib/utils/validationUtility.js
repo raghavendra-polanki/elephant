@@ -14,7 +14,7 @@ const compileValidationErrors = (error) => {
 
     return valErrors;
   } else {
-    return 'error while validating schema';
+    return 'Error while validating schema.';
   }
 };
 
