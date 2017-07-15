@@ -12,6 +12,10 @@ module.exports = new Mongoose.Schema({
     type: Mongoose.Schema.Types.Mixed,
     validate: $.utils.validation.validateSchemaNames,
   },
+  is_root: {
+    type: Boolean,
+    required: true,
+  },
   children: [ // these are category_ids.
     String,
   ],
