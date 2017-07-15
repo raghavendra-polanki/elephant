@@ -55,7 +55,7 @@ const addRoutes = function(app, label) {
 
 const init = function() {
   console.log('\nInitializing app...');
-  $.NODE_ENV = process.env.NODE_ENV;
+  $.NODE_ENV = process.env.NODE_ENV || 'development';
   console.log('Environment: ' + $.NODE_ENV);
   // console.log(process.env);
 

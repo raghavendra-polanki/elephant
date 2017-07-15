@@ -21,6 +21,10 @@ let logger = new (Winston.Logger)({
   ],
 });
 
+if ($.NODE_ENV === 'development') {
+  logger.level = 'debug';
+}
+
 let externals = {};
 
 externals.Error = (data) => {

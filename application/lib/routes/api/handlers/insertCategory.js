@@ -51,7 +51,8 @@ const processRequest = async (req, res, next) => {
 };
 
 module.exports = function(req, res, next) {
-  $.log.Info('inside /api/insert_category');
+  $.log.Info('/api/insert_category');
+  $.log.Debug(req.body);
 
   processRequest(req, res, next)
   .then((data) => {
