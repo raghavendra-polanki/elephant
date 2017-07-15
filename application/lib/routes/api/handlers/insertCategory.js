@@ -2,12 +2,24 @@
 
 const $ = require(__base + 'lib');
 
+const setNamesToLowerCase = (categoryData) => {
+  let names = {};
+  for (let lang in categoryData.names) {
+    names[lang] = categoryData.names[lang].toLowerCase();
+  }
+  categoryData.set({
+    names: names,
+  });
+  return categoryData;
+};
+
 const processRequest = async (req, res, next) => {
   let categoryData;
   try {
     categoryData = new $.model.Category(req.body);
     // validate category schema.
     await $.utils.validation.validateInstanceSchema(categoryData);
+    categoryData = setNamesToLowerCase(categoryData);
   } catch (err) {
     $.log.Error(err);
     res.status(500).json({status: 'INVALID_ARGUMENT', error: err});
