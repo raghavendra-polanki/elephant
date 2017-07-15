@@ -9,7 +9,7 @@ const processRequest = async (req, res, next) => {
     // validate category schema.
     await $.utils.validation.validateInstanceSchema(categoryData);
   } catch (err) {
-    console.error(err);
+    $.log.Error(err);
     res.status(500).json({status: 'INVALID_ARGUMENT', error: err});
     return;
   }
@@ -44,7 +44,7 @@ const processRequest = async (req, res, next) => {
 
     return categoryID;
   } catch (err) {
-    console.error(err);
+    $.log.Error(err);
     res.status(500).json({status: 'INTERNAL', error: err});
     return;
   }
@@ -60,7 +60,7 @@ module.exports = function(req, res, next) {
     }
   })
   .catch((err) => {
-    console.log(err);
+    $.log.Error(err);
     res.status(500).json({status: 'INTERNAL', error: err});
   });
 };

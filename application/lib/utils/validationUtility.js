@@ -22,7 +22,7 @@ externals.validateInstanceSchema = (instance) => {
   return new $.promise((resolve, reject) => {
     instance.validate((err) => {
       if (err) {
-        console.error(err);
+        $.log.Error(err);
         reject(compileValidationErrors(err));
       } else {
         resolve();
