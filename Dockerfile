@@ -1,4 +1,5 @@
-FROM node:8 # TODO(surenderthakran): use our own image instead
+# TODO(surenderthakran): use our own image instead
+FROM node:8
 
 ADD . /elephant
 

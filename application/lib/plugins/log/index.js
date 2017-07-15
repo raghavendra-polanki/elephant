@@ -35,6 +35,10 @@ externals.Info = (data) => {
   logger.info(data);
 };
 
+externals.Debug = (data) => {
+  logger.debug(data);
+};
+
 module.exports = (options) => {
   return new $.promise((resolve, reject) => {
     return resolve(externals);
