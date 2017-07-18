@@ -21,7 +21,7 @@ module.exports = new Mongoose.Schema({
   ],
 }, {
   bufferCommands: false, // disable command buffering.
-  collection: 'category',
+  collection: 'categories',
   strict: 'throw',
   versionKey: false,
 });
