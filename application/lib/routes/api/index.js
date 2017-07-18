@@ -12,7 +12,7 @@ Router.use(BodyParser.urlencoded({extended: true}));
 
 // Level 1 APIs.
 
-Router.post('/api/insert_category',
+Router.post('/api/category/insert',
   require($.path.routes + '/api/handlers/insertCategory'));
 
 module.exports = Router;
