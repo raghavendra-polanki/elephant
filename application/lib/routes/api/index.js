@@ -15,4 +15,7 @@ Router.use(BodyParser.urlencoded({extended: true}));
 Router.post('/api/category/insert',
   require($.path.routes + '/api/handlers/category/insert'));
 
+Router.get('/api/category/list',
+  require($.path.routes + '/api/handlers/category/list'));
+
 module.exports = Router;
