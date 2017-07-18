@@ -25,7 +25,7 @@ internals.serverConf = {
     mongodb: {
       host: process.env.MONGO_PORT_27017_TCP_ADDR,
       port: process.env.MONGO_PORT_27017_TCP_PORT,
-      db: 'vilo-dev',
+      db: 'viloCounter-dev',
     },
     mongoose: {
       host: process.env.MONGO_PORT_27017_TCP_ADDR,

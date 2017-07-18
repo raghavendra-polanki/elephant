@@ -69,6 +69,6 @@ module.exports = new Mongoose.Schema({
   updated_at: Number,
 }, {
   bufferCommands: false, // disable command buffering.
-  collection: 'assets',
+  collection: 'users',
   strict: 'throw',
 });
