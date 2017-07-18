@@ -57,7 +57,7 @@ const processRequest = async (req, res, next) => {
     return categoryID;
   } catch (err) {
     $.log.Error(err);
-    res.status(500).json({status: 'INTERNAL', error: err});
+    res.status(500).json({status: 'INTERNAL', error: 'something went wrong.'});
     return;
   }
 };
@@ -74,6 +74,6 @@ module.exports = function(req, res, next) {
   })
   .catch((err) => {
     $.log.Error(err);
-    res.status(500).json({status: 'INTERNAL', error: err});
+    res.status(500).json({status: 'INTERNAL', error: 'something went wrong.'});
   });
 };
