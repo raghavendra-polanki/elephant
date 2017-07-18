@@ -37,8 +37,9 @@ const registerModels = function() {
 
 module.exports = (options) => {
   return new $.promise((resolve, reject) => {
-    let mongodbAddress = 'mongodb://' + options.host + ':' + options.port + '/'
-        + options.db;
+    let mongodbAddress = 'mongodb://' + options.user + ':' + options.pwd + '@' +
+        options.host + ':' + options.port + '/' + options.db + '?authSource=' +
+        options.authSource;
     dbConnection = Mongoose.createConnection(mongodbAddress, {
       config: {
         autoIndex: false, // disable automatic creation of indices on load.

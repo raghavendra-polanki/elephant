@@ -8,8 +8,9 @@ let externals = {};
 
 module.exports = (options) => {
   return new $.promise((resolve, reject) => {
-    let mongodbAddress = 'mongodb://' + options.host + ':' + options.port + '/'
-        + options.db;
+    let mongodbAddress = 'mongodb://' + options.user + ':' + options.pwd + '@' +
+        options.host + ':' + options.port + '/' + options.db + '?authSource=' +
+        options.authSource;
     MongoClient.connect(mongodbAddress, function(err, db) {
       if (err) {
         console.error('Error connecting to mongo database.');
