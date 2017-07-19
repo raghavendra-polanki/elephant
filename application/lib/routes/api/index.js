@@ -10,6 +10,16 @@ const Router = Express.Router();
 Router.use(BodyParser.json());
 Router.use(BodyParser.urlencoded({extended: true}));
 
+Router.use((req, res, next) => {
+  $.log.Info(req.method + " " + req.url);
+  if (req.method === "GET") {
+    $.log.Debug(req.query);
+  } else if (req.method === "POST") {
+    $.log.Debug(req.body);
+  }
+  next();
+});
+
 // Level 1 APIs.
 
 Router.post('/api/category/insert',
