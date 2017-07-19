@@ -10,6 +10,7 @@ const Router = Express.Router();
 Router.use(BodyParser.json());
 Router.use(BodyParser.urlencoded({extended: true}));
 
+// Middleware to log all incoming requests.
 Router.use((req, res, next) => {
   $.log.Infof('%s %s', req.method, req.url);
   if (req.method === 'GET') {
@@ -24,6 +25,11 @@ Router.use((req, res, next) => {
 
 Router.post('/api/category/insert',
   require($.path.routes + '/api/handlers/category/insert'));
+
+Router.post('/api/category/set_parent',
+  require($.path.routes + '/api/handlers/category/setParent'));
+
+// Level 2 APIs.
 
 Router.get('/api/category/list',
   require($.path.routes + '/api/handlers/category/list'));
