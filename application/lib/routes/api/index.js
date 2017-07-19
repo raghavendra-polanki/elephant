@@ -28,4 +28,7 @@ Router.post('/api/category/insert',
 Router.get('/api/category/list',
   require($.path.routes + '/api/handlers/category/list'));
 
+Router.get('/api/category/get',
+  require($.path.routes + '/api/handlers/category/get'));
+
 module.exports = Router;
