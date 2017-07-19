@@ -11,7 +11,7 @@ Router.use(BodyParser.json());
 Router.use(BodyParser.urlencoded({extended: true}));
 
 Router.use((req, res, next) => {
-  $.log.Info(req.method + ' ' + req.url);
+  $.log.Infof('%s %s', req.method, req.url);
   if (req.method === 'GET') {
     $.log.Debug(req.query);
   } else if (req.method === 'POST') {

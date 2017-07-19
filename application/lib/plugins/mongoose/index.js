@@ -5,6 +5,7 @@ const $ = require(__base + 'lib');
 const Glob = require('glob');
 const Mongoose = require('mongoose');
 const Path = require('path');
+const Util = require('util');
 
 Mongoose.promise = $.promise;
 
@@ -37,9 +38,10 @@ const registerModels = function() {
 
 module.exports = (options) => {
   return new $.promise((resolve, reject) => {
-    let mongodbAddress = 'mongodb://' + options.user + ':' + options.pwd + '@' +
-        options.host + ':' + options.port + '/' + options.db + '?authSource=' +
-        options.authSource;
+    let mongodbAddress = Util.format('mongodb://%s:%s@%s:%s/%s?authSource=%s',
+                                     options.user, options.pwd, options.host,
+                                     options.port, options.db,
+                                     options.authSource);
     dbConnection = Mongoose.createConnection(mongodbAddress, {
       config: {
         autoIndex: false, // disable automatic creation of indices on load.
