@@ -2,6 +2,18 @@
 
 const $ = require(__base + 'lib');
 
+const padNumber = (num, size) => {
+  let s = num.toString();
+  while (s.length < size) {
+    s = '0' + s;
+  }
+  return s;
+};
+
+const packageCategoryID = (record) => {
+  return record.prefix + padNumber(record.count, 4);
+};
+
 module.exports = {
   pattern: {
     cmd: 'generate_category_id',
@@ -18,7 +30,7 @@ module.exports = {
           $.log.Error(err);
           return callback(err, null);
         }
-        return callback(null, {id: doc.value.count});
+        return callback(null, {id: packageCategoryID(doc.value)});
       });
   },
 };
