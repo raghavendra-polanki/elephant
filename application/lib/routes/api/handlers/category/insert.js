@@ -5,7 +5,9 @@ const $ = require(__base + 'lib');
 const setNamesToLowerCase = (categoryData) => {
   let names = {};
   for (let lang in categoryData.names) {
-    names[lang] = categoryData.names[lang].toLowerCase();
+    if (categoryData.names.hasOwnProperty(lang)) {
+      names[lang] = categoryData.names[lang].toLowerCase();
+    }
   }
   categoryData.set({
     names: names,
