@@ -21,6 +21,7 @@ let logger = new (Winston.Logger)({
   ],
 });
 
+// debug logs will be printed in console in development environment only.
 if ($.NODE_ENV === 'development') {
   logger.level = 'debug';
 }

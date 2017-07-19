@@ -39,9 +39,10 @@ const processRequest = async (req, res, next) => {
     let existingCategory =
         await $.model.Category.findOne({'$or': orQuery}).exec();
     if (existingCategory !== null) {
+      $.log.Warning("category with similar name already exists.");
       res.status(500).json({
         status: 'ALREADY_EXISTS',
-        error: 'A category with identical name already exists in atleast one ' +
+        error: 'a category with identical name already exists in atleast one ' +
                'language.',
       });
       return;
@@ -65,9 +66,6 @@ const processRequest = async (req, res, next) => {
 };
 
 module.exports = function(req, res, next) {
-  $.log.Info('/api/category/insert');
-  $.log.Debug(req.body);
-
   processRequest(req, res, next)
   .then((data) => {
     if (data !== undefined) {

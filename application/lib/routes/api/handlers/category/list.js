@@ -16,8 +16,6 @@ const processRequest = async (req, res, next) => {
 };
 
 module.exports = function(req, res, next) {
-  $.log.Info('/api/category/list');
-
   processRequest(req, res, next)
   .then((data) => {
     if (data !== undefined) {
