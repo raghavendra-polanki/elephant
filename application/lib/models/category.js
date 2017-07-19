@@ -25,3 +25,9 @@ module.exports = new Mongoose.Schema({
   strict: 'throw',
   versionKey: false,
 });
+
+/**
+  * Indices:
+  *
+  * db.categories.createIndex({"id": 1}, {unique: true});
+  */
