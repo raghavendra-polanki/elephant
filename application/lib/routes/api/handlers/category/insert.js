@@ -39,7 +39,7 @@ const processRequest = async (req, res, next) => {
     let existingCategory =
         await $.model.Category.findOne({'$or': orQuery}).exec();
     if (existingCategory !== null) {
-      $.log.Warning("category with similar name already exists.");
+      $.log.Warning('category with similar name already exists.');
       res.status(500).json({
         status: 'ALREADY_EXISTS',
         error: 'a category with identical name already exists in atleast one ' +
