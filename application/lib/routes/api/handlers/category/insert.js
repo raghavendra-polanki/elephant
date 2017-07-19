@@ -51,7 +51,7 @@ const processRequest = async (req, res, next) => {
     // generate a new category_id.
     let categoryID = await $.act({cmd: 'generate_category_id'});
     categoryData.set({
-      category_id: categoryID.id,
+      id: categoryID.id,
     });
 
     // save category in database.
