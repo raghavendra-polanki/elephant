@@ -2,9 +2,21 @@
 
 const $ = require(__base + 'lib');
 
+const Joi = require('joi');
+
+const requestSchema = Joi.object().keys({
+  id: Joi.string().alphanum().required(),
+  parents: Joi.array().items(Joi.string().alphanum().required()),
+});
+
 const processRequest = async (req, res, next) => {
   try {
-    console.log(req.body);
+    let requestParameters = req.body;
+    const {error, value} = Joi.validate(requestParameters, requestSchema);
+    if (error != null) {
+      res.status(500).json({status: 'INVALID_ARGUMENT', error: error});
+      return;
+    }
   } catch (err) {
     $.log.Error(err);
     res.status(500).json({status: 'INTERNAL', error: 'something went wrong.'});
