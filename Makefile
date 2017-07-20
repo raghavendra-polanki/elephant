@@ -14,20 +14,6 @@ ifdef DOCKER
 	@echo Setting up environment...
 	@echo "Waiting for linked containers to start..."
 	@sleep 2
-	@echo "Waiting for linked containers to start..."
-	@sleep 2
-	@echo "Waiting for linked containers to start..."
-	@sleep 2
-	@echo "Waiting for linked containers to start..."
-	@sleep 2
-	@echo "Waiting for linked containers to start..."
-	@sleep 2
-	@echo "Waiting for linked containers to start..."
-	@sleep 2
-	@echo "Waiting for linked containers to start..."
-	@sleep 2
-	@echo "Waiting for linked containers to start..."
-	@sleep 2
 	@echo Starting gulp watch in background...
 	@nohup $(GULP) watch &
 	@echo Starting server via nodemon...
