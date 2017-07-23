@@ -8,7 +8,7 @@ module.exports = {
   },
   description: 'Service to generate a new asset ID',
   handler: (message, callback) => {
-    $.log.Debug('inside generate_asset_id service');
+    $.log.Debug('service generate_asset_id');
 
     $.mongodb.db.collection('asset_counter').findAndModify(
       {prefix: $.utils.dateTime.CurrentYYMMDD()}, [],

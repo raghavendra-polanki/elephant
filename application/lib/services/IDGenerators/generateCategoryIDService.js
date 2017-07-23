@@ -20,7 +20,7 @@ module.exports = {
   },
   description: 'Service to generate a new category ID',
   handler: (message, callback) => {
-    $.log.Debug('inside generate_category_id service');
+    $.log.Debug('service generate_category_id');
 
     $.mongodb.db.collection('category_counter').findAndModify(
       {prefix: $.utils.dateTime.CurrentYYMMDD()}, [],
