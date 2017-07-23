@@ -1,8 +1,0 @@
-
-# Eclipse Metadata
-.metadata/
-
-# Mac OS X clutter
-*.DS_Store
-
-node_modules

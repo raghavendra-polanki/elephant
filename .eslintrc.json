@@ -1,0 +1,12 @@
+{
+    "extends": "google",
+    "parserOptions": {
+        "ecmaVersion": 8
+    },
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "new-cap": 0
+    }
+}
