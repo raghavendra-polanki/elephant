@@ -17,6 +17,19 @@ const processRequest = async (req, res, next) => {
       res.status(500).json({status: 'INVALID_ARGUMENT', error: error.message});
       return;
     }
+    if (value.parents.length > 0) {
+      await $.act({
+        cmd: 'set_category_parents',
+        data: value,
+      });
+      return value.id;
+    } else {
+      res.status(500).json({
+        status: 'INVALID_ARGUMENT',
+        error: 'need atleast one valid parents id',
+      });
+      return;
+    }
   } catch (err) {
     $.log.Error(err);
     res.status(500).json({status: 'INTERNAL', error: 'something went wrong.'});
@@ -27,7 +40,6 @@ const processRequest = async (req, res, next) => {
 module.exports = function(req, res, next) {
   processRequest(req, res, next)
   .then((data) => {
-    console.log(data);
     if (data !== undefined) {
       res.status(200).json({status: 'OK', data: data});
     }

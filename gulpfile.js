@@ -4,7 +4,6 @@ const gulp = require('gulp');
 const eslint = require('gulp-eslint');
 
 gulp.task('js-lint', () => {
-  console.log('inside js-lint');
   return gulp.src([
     __dirname + '/application/**/*.js',
     '!' + __dirname + '/node_modules{,/**}',
