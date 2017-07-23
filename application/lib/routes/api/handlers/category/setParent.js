@@ -6,7 +6,7 @@ const Joi = require('joi');
 
 const requestSchema = Joi.object().keys({
   id: Joi.string().alphanum().required(),
-  parents: Joi.array().items(Joi.string().alphanum().required()),
+  parents: Joi.array().unique().items(Joi.string().alphanum().required()),
 });
 
 const processRequest = async (req, res, next) => {
@@ -14,7 +14,7 @@ const processRequest = async (req, res, next) => {
     let requestParameters = req.body;
     const {error, value} = Joi.validate(requestParameters, requestSchema);
     if (error != null) {
-      res.status(500).json({status: 'INVALID_ARGUMENT', error: error});
+      res.status(500).json({status: 'INVALID_ARGUMENT', error: error.message});
       return;
     }
   } catch (err) {
