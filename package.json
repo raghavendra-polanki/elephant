@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/raghavendra-polanki/elephant#readme",
   "dependencies": {
-    "async": "https://registry.npmjs.org/async/-/async-2.1.4.tgz",
+    "async": "^2.5.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
