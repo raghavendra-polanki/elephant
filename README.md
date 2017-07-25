@@ -11,7 +11,7 @@ docker build -t elephant .
 
 ### Start mongo container with authentication enabled
 ```
-docker run -d --rm -p 27017:27017 --restart unless-stopped -v $HOME/workspace/data/mongo:/data/db --name mongo_local mongo:3.4.5 --auth
+docker run -d -p 27017:27017 --restart unless-stopped -v $HOME/workspace/data/mongo:/data/db --name mongo_local mongo:3.4.5 --auth
 ```
 
 ### Start application container
