@@ -14,35 +14,6 @@ const internals = {
     serverConf: null,
 };
 
-internals.serverConf = {
-  connections: {
-    api: {
-      port: 17883,
-      label: 'api',
-    },
-  },
-  plugins: {
-    mongodb: {
-      host: process.env.MONGO_PORT_27017_TCP_ADDR,
-      port: process.env.MONGO_PORT_27017_TCP_PORT,
-      db: 'viloCounter-dev',
-      user: 'elephant-rw',
-      pwd: 'elephant',
-      authSource: 'admin',
-    },
-    mongoose: {
-      host: process.env.MONGO_PORT_27017_TCP_ADDR,
-      port: process.env.MONGO_PORT_27017_TCP_PORT,
-      db: 'vilo-dev',
-      user: 'elephant-rw',
-      pwd: 'elephant',
-      authSource: 'admin',
-    },
-    services: {},
-    log: {},
-  },
-};
-
 // Utilities
 const getUtilities = function() {
     let options = {
@@ -75,6 +46,7 @@ const init = function() {
   $.path.conf = Path.resolve($.path.root + '/etc');
 
   $.constants = require($.path.conf + '/constants');
+  internals.serverConf = require($.path.conf + '/server');
 
   // adding bluebird's promise to global object to develop habit of using
   // bluebird only for promises. In absense of bluebird, node silently uses
