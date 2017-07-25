@@ -88,7 +88,7 @@ const registerPlugins = function() {
       console.log('\n===== Registering plugin: ' + pluginName + ' =====');
 
       try {
-        require($.path.plugins + '/' + pluginName)(pluginParams)
+        require($.path.plugins + '/' + pluginName)(pluginParams[$.NODE_ENV])
         .then((plugin) => {
           $[pluginName] = plugin;
           callback();
