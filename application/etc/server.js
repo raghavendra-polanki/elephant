@@ -17,7 +17,14 @@ module.exports = {
           pwd: 'elephant',
           authSource: 'admin',
         },
-        production: {},
+        production: {
+          host: process.env.MONGO_PORT_27017_TCP_ADDR,
+          port: process.env.MONGO_PORT_27017_TCP_PORT,
+          db: process.env.MONGO_COUNTER_DB,
+          user: process.env.MONGO_USER,
+          pwd: process.env.MONGO_PASSWORD,
+          authSource: process.env.MONGO_AUTH_DB,
+        },
       },
       mongoose: {
         development: {
@@ -28,7 +35,14 @@ module.exports = {
           pwd: 'elephant',
           authSource: 'admin',
         },
-        production: {},
+        production: {
+          host: process.env.MONGO_PORT_27017_TCP_ADDR,
+          port: process.env.MONGO_PORT_27017_TCP_PORT,
+          db: process.env.MONGO_DB,
+          user: process.env.MONGO_USER,
+          pwd: process.env.MONGO_PASSWORD,
+          authSource: process.env.MONGO_AUTH_DB,
+        },
       },
       services: {},
       log: {},
