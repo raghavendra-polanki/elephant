@@ -11,12 +11,12 @@ docker build -t elephant .
 
 ### Start mongo container with authentication enabled
 ```
-docker run -d --rm -p 27017:27017 -v $HOME/workspace/data/mongo:/data/db --name mongo_local mongo:3.4.5 --auth
+docker run -d -p 27017:27017 --restart unless-stopped -v $HOME/workspace/data/mongo:/data/db --name mongo_container mongo:3.4.5 --auth
 ```
 
 ### Start application container
 ```
-docker run --rm -it -v $(pwd)/application:/elephant/application -v $(pwd)/package.json:/elephant/package.json --link mongo_local:mongo -p 17883:17883 --name=elephant_1 elephant bash
+docker run --rm -it -v $(pwd)/application:/elephant/application -v $(pwd)/package.json:/elephant/package.json --link mongo_container:mongo -p 17883:17883 --name=elephant_1 elephant bash
 ```
 
 ### Mongo Backup:
