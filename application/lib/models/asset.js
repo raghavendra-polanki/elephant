@@ -5,34 +5,26 @@ const $ = require(__base + 'lib');
 const Mongoose = require('mongoose');
 
 module.exports = new Mongoose.Schema({
-  asset_id: String,
+  id: String, // not adding 'required' validator validations wil be running
+              // before generating id to avoid dangling ids in database in case
+              // of validation fails.
   urls: [
     {
       url: String,
       src: {
         type: String,
-        enum: ['YOUTUBE', 'VIMEO'],
+        enum: $.constants.videoSources,
       },
     },
   ],
-  title: [
-    {
-      val: String,
-      lang: {
-        type: String,
-        enum: $.constants.supportedLanguages,
-      },
-    },
-  ],
-  desc: [
-    {
-      val: String,
-      lang: {
-        type: String,
-        enum: $.constants.supportedLanguages,
-      },
-    },
-  ],
+  title: {
+    type: Mongoose.Schema.Types.Mixed,
+    validate: $.utils.validation.validateDBNames,
+  },
+  desc: {
+    type: Mongoose.Schema.Types.Mixed,
+    validate: $.utils.validation.validateDBNames,
+  },
   length: Number,
   lang: {
     val: String,
@@ -40,7 +32,7 @@ module.exports = new Mongoose.Schema({
   },
   rating: {
     val: String,
-    enum: ['U', 'UA', 'A'],
+    enum: $.constants.videoRatings,
   },
   curator_id: String,
   curated_on: Number,
@@ -52,4 +44,11 @@ module.exports = new Mongoose.Schema({
   bufferCommands: false, // disable command buffering.
   collection: 'assets',
   strict: 'throw',
+  versionKey: false,
 });
+
+/**
+  * Indices:
+  *
+  * db.assets.createIndex({"id": 1}, {unique: true});
+  */
