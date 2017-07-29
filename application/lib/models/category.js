@@ -5,12 +5,12 @@ const $ = require(__base + 'lib');
 const Mongoose = require('mongoose');
 
 module.exports = new Mongoose.Schema({
-  id: String, // not adding 'required' validator validations wil be
-                       // running before generating id to avoid
-                       // dangling ids in database in case of validation fails.
-  names: {
+  id: String, // not adding 'required' validator validations wil be running
+              // before generating id to avoid dangling ids in database in case
+              // of validation fails.
+  name: {
     type: Mongoose.Schema.Types.Mixed,
-    validate: $.utils.validation.validateSchemaNames,
+    validate: $.utils.validation.validateDBNames,
   },
   is_root: {
     type: Boolean,

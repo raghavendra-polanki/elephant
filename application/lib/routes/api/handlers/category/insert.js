@@ -4,13 +4,13 @@ const $ = require(__base + 'lib');
 
 const setNamesToLowerCase = (categoryData) => {
   let names = {};
-  for (let lang in categoryData.names) {
-    if (categoryData.names.hasOwnProperty(lang)) {
-      names[lang] = categoryData.names[lang].toLowerCase();
+  for (let lang in categoryData.name) {
+    if (categoryData.name.hasOwnProperty(lang)) {
+      names[lang] = categoryData.name[lang].toLowerCase();
     }
   }
   categoryData.set({
-    names: names,
+    name: names,
   });
   return categoryData;
 };
@@ -31,9 +31,9 @@ const processRequest = async (req, res, next) => {
   try {
     // check if an identically named category already exists in any language.
     let orQuery = [];
-    Object.keys(categoryData.names).forEach((lang) => {
+    Object.keys(categoryData.name).forEach((lang) => {
       let q = {};
-      q['names.' + lang] = categoryData.names[lang];
+      q['name.' + lang] = categoryData.name[lang];
       orQuery.push(q);
     });
     let existingCategory =
