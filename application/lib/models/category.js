@@ -19,6 +19,14 @@ module.exports = new Mongoose.Schema({
   children: [ // these are category_ids.
     String,
   ],
+  created_at: {
+    type: Number,
+    required: true,
+  },
+  updated_at: {
+    type: Number,
+    required: true,
+  },
 }, {
   bufferCommands: false, // disable command buffering.
   collection: 'categories',

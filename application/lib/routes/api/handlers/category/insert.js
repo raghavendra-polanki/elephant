@@ -19,9 +19,15 @@ const processRequest = async (req, res, next) => {
   let categoryData;
   try {
     categoryData = new $.model.Category(req.body);
+    categoryData = setNamesToLowerCase(categoryData);
+    let currentTimestamp = Date.now();
+    categoryData.set({
+      created_at: currentTimestamp,
+      updated_at: currentTimestamp,
+    });
+
     // validate category schema.
     await $.utils.validation.validateInstanceSchema(categoryData);
-    categoryData = setNamesToLowerCase(categoryData);
   } catch (err) {
     $.log.Error(err);
     res.status(500).json({status: 'INVALID_ARGUMENT', error: err});
