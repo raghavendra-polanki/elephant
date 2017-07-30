@@ -17,8 +17,8 @@ Router.use((req, res, next) => {
     requesterIP = (req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress).split(",")[0];
-  } catch(err) {
+        req.connection.socket.remoteAddress).split(',')[0];
+  } catch (err) {
     $.log.Errorf('unable to read requester IP for:');
     $.log.Error(req);
   }
