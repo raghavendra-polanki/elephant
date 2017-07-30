@@ -31,7 +31,7 @@ externals.validateInstanceSchema = (instance) => {
   });
 };
 
-externals.validateDBNames = [
+externals.validateMultiLangStrings = [
   {
     validator: (data) => {
       if (!Object.keys(data).length) {

@@ -19,11 +19,11 @@ module.exports = new Mongoose.Schema({
   ],
   title: {
     type: Mongoose.Schema.Types.Mixed,
-    validate: $.utils.validation.validateDBNames,
+    validate: $.utils.validation.validateMultiLangStrings,
   },
   desc: {
     type: Mongoose.Schema.Types.Mixed,
-    validate: $.utils.validation.validateDBNames,
+    validate: $.utils.validation.validateMultiLangStrings,
   },
   length: Number,
   lang: {

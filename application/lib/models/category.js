@@ -10,7 +10,7 @@ module.exports = new Mongoose.Schema({
               // of validation fails.
   name: {
     type: Mongoose.Schema.Types.Mixed,
-    validate: $.utils.validation.validateDBNames,
+    validate: $.utils.validation.validateMultiLangStrings,
   },
   is_root: {
     type: Boolean,
