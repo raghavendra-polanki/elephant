@@ -29,6 +29,9 @@ Router.post('/api/category/insert',
 Router.post('/api/category/set_parent',
   require($.path.routes + '/api/handlers/category/setParent'));
 
+Router.post('/api/video/insert',
+  require($.path.routes + '/api/handlers/video/insert'));
+
 // Level 2 APIs.
 
 Router.get('/api/category/list',

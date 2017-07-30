@@ -8,6 +8,10 @@ module.exports = new Mongoose.Schema({
   id: String, // not adding 'required' validator validations wil be running
               // before generating id to avoid dangling ids in database in case
               // of validation fails.
+  is_active: {
+    type: Boolean,
+    required: true,
+  },
   urls: [
     {
       url: String,
@@ -27,22 +31,30 @@ module.exports = new Mongoose.Schema({
   },
   length: Number,
   lang: {
-    val: String,
+    type: String,
     enum: $.constants.supportedLanguages,
+    required: true,
   },
   rating: {
-    val: String,
+    type: String,
     enum: $.constants.videoRatings,
+    required: true,
   },
-  curator_id: String,
-  curated_on: Number,
-  verifier_id: String,
-  verified_on: Number,
-  created_at: Number,
-  updated_at: Number,
+  curator_id: {
+    type: String,
+    required: true,
+  },
+  created_at: {
+    type: Number,
+    required: true,
+  },
+  updated_at: {
+    type: Number,
+    required: true,
+  },
 }, {
   bufferCommands: false, // disable command buffering.
-  collection: 'assets',
+  collection: 'videos',
   strict: 'throw',
   versionKey: false,
 });
@@ -50,5 +62,5 @@ module.exports = new Mongoose.Schema({
 /**
   * Indices:
   *
-  * db.assets.createIndex({"id": 1}, {unique: true});
+  * db.videos.createIndex({"id": 1}, {unique: true});
   */
