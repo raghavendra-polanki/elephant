@@ -9,6 +9,13 @@ const SwaggerDocument = require($.path.docs + '/openapi.json');
 
 const Router = Express.Router();
 
-Router.use('/apidocs', SwaggerUi.serve, SwaggerUi.setup(SwaggerDocument));
+let options = {
+  supportedSubmitMethods: [],
+  validatorUrl: null,
+};
+
+Router.use('/apidocs',
+           SwaggerUi.serve,
+           SwaggerUi.setup(SwaggerDocument, false, options));
 
 module.exports = Router;
