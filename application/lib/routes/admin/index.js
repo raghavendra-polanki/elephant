@@ -35,20 +35,20 @@ Router.use((req, res, next) => {
 // Level 1 APIs.
 
 Router.post('/api/category/insert',
-  require($.path.routes + '/api/handlers/category/insert'));
+  require($.path.routes + '/admin/handlers/category/insert'));
 
 Router.post('/api/category/set_parent',
-  require($.path.routes + '/api/handlers/category/setParent'));
+  require($.path.routes + '/admin/handlers/category/setParent'));
 
 Router.post('/api/video/insert',
-  require($.path.routes + '/api/handlers/video/insert'));
+  require($.path.routes + '/admin/handlers/video/insert'));
 
 // Level 2 APIs.
 
 Router.get('/api/category/list',
-  require($.path.routes + '/api/handlers/category/list'));
+  require($.path.routes + '/admin/handlers/category/list'));
 
 Router.get('/api/category/get',
-  require($.path.routes + '/api/handlers/category/get'));
+  require($.path.routes + '/admin/handlers/category/get'));
 
 module.exports = Router;
