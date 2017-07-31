@@ -1,0 +1,80 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Elephant API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://admin.vilo.io",
+      "description": "Admin Panel APIs"
+    }
+  ],
+  "paths": {
+    "/api/category/get": {
+      "get": {
+        "summary": "Get category data",
+        "description": "Get category data",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Category ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "A json of category data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "object"
+                    },
+                    "is_root": {
+                      "type": "boolean"
+                    },
+                    "children": {
+                      "type": "array"
+                    },
+                    "created_at": {
+                      "type": "number"
+                    },
+                    "updated_at": {
+                      "type": "number"
+                    }
+                  },
+                  "example": {
+                    "id": 1707310001,
+                    "name": {
+                      "english": "funny"
+                    },
+                    "is_root": false,
+                    "children": [
+                      1707310002,
+                      1707310003
+                    ],
+                    "created_at": 1501486651537,
+                    "updated_at": 1501486651537
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
