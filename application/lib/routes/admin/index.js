@@ -37,8 +37,8 @@ Router.use((req, res, next) => {
 Router.post('/api/category/insert',
   require($.path.routes + '/admin/handlers/category/insert'));
 
-Router.post('/api/category/set_parent',
-  require($.path.routes + '/admin/handlers/category/setParent'));
+Router.post('/api/category/set_parents',
+  require($.path.routes + '/admin/handlers/category/setParents'));
 
 Router.post('/api/video/insert',
   require($.path.routes + '/admin/handlers/video/insert'));
