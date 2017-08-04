@@ -1,55 +1,88 @@
-swagger: "2.0"
+swagger: 2.0
 info:
-  title: Elephant API
+  description: Elephant APIs
   version: 1.0.0
+  title: Elephant
+tags:
+- name: admin
+  description: APIs for Admin Panel
 schemes:
-  - http
-  - https
-consumes:
-  - application/json
-produces:
-  - application/json
+- http
+- https
 paths:
-  "/api/category/get":
+  /api/category/get:
     get:
+      tags:
+        - admin
       summary: Get category data
       description: Get category data
+      operationId: getCategory
+      produces:
+        - application/json
       parameters:
-      - name: id
-        in: path
-        description: Category ID
-        required: true
-        schema:
+        - name: id
+          in: query
+          description: Category ID
+          required: true
           type: string
-      tags:
-      - Admin
       responses:
-        '200':
-          description: A json of category data
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: object
-                  is_root:
-                    type: boolean
-                  children:
-                    type: array
-                  created_at:
-                    type: number
-                  updated_at:
-                    type: number
-                example:
-                  id: 1707310001
-                  name:
-                    english: funny
-                  is_root: false
-                  children:
-                  - 1707310002
-                  - 1707310003
-                  created_at: 1501486651537
-                  updated_at: 1501486651537
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Category"
+        400:
+          description: INVALID_ARGUMENT
+          schema:
+            $ref: "#/definitions/InvalidArgumentErrorResponse"
+        500:
+          description: INTERNAL
+          schema:
+            $ref: "#/definitions/InternalErrorResponse"
+definitions:
+  Category:
+    type: object
+    properties:
+      id:
+        type: string
+        example: 1707290001
+      name:
+        $ref: "#/definitions/Names"
+      is_root:
+        type: boolean
+        example: true
+      children:
+        type: array
+        items:
+          type: string
+        example:
+          - 1707280002
+          - 1707280003
+      created_at:
+        type: integer
+        format: int64
+      updated_at:
+        type: integer
+        format: int64
+  Names:
+    type: object
+    example:
+      english: name in english
+      hindi: name in hindi
+  InvalidArgumentErrorResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: INVALID_ARGUMENT
+      error:
+        type: string
+        example: need a valid id.
+  InternalErrorResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: INTERNAL
+      error:
+        type: string
+        example: something went wrong.

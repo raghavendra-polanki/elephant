@@ -3,9 +3,12 @@
 const $ = require(__base + 'lib');
 
 const Express = require('express');
+const Fs = require('fs');
 const SwaggerUi = require('swagger-ui-express');
+const Yaml = require('js-yaml');
 
-const SwaggerDocument = require($.path.docs + '/openapi.json');
+const SwaggerDocument = Yaml.safeLoad(
+    Fs.readFileSync($.path.docs + '/openapi.yaml', 'utf8'));
 
 const Router = Express.Router();
 
