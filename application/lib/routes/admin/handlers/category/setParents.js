@@ -14,7 +14,7 @@ const processRequest = async (req, res, next) => {
     let requestParameters = req.body;
     const {error, value} = Joi.validate(requestParameters, requestSchema);
     if (error != null) {
-      res.status(500).json({status: 'INVALID_ARGUMENT', error: error.message});
+      res.status(400).json({status: 'INVALID_ARGUMENT', error: error.message});
       return;
     }
     if (value.parents.length > 0) {
@@ -24,7 +24,7 @@ const processRequest = async (req, res, next) => {
       });
       return value.id;
     } else {
-      res.status(500).json({
+      res.status(400).json({
         status: 'INVALID_ARGUMENT',
         error: 'need atleast one valid parents id',
       });

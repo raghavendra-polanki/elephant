@@ -30,7 +30,7 @@ const processRequest = async (req, res, next) => {
     await $.utils.validation.validateInstanceSchema(categoryData);
   } catch (err) {
     $.log.Error(err);
-    res.status(500).json({status: 'INVALID_ARGUMENT', error: err});
+    res.status(400).json({status: 'INVALID_ARGUMENT', error: err});
     return;
   }
 
@@ -46,7 +46,7 @@ const processRequest = async (req, res, next) => {
         await $.model.Category.findOne({'$or': orQuery}).exec();
     if (existingCategory !== null) {
       $.log.Warning('category with similar name already exists.');
-      res.status(500).json({
+      res.status(409).json({
         status: 'ALREADY_EXISTS',
         error: 'a category with identical name already exists in atleast one ' +
                'language.',

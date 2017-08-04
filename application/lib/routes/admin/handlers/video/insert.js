@@ -19,7 +19,7 @@ const processRequest = async (req, res, next) => {
     await $.utils.validation.validateInstanceSchema(videoData);
   } catch (err) {
     $.log.Error(err);
-    res.status(500).json({status: 'INVALID_ARGUMENT', error: err});
+    res.status(400).json({status: 'INVALID_ARGUMENT', error: err});
     return;
   }
 };
