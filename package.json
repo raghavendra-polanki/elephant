@@ -23,6 +23,7 @@
     "express": "^4.15.3",
     "glob": "https://registry.npmjs.org/glob/-/glob-4.5.3.tgz",
     "joi": "^10.6.0",
+    "js-yaml": "^3.9.1",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
     "mongodb": "^2.2.29",
