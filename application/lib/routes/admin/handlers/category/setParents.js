@@ -22,7 +22,7 @@ const processRequest = async (req, res, next) => {
         cmd: 'set_category_parents',
         data: value,
       });
-      return value.id;
+      return {id: value.id};
     } else {
       res.status(400).json({
         status: 'INVALID_ARGUMENT',
