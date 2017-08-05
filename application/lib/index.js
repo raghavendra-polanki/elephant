@@ -44,6 +44,7 @@ const init = function() {
   $.path.models = Path.resolve($.path.root + '/lib/models');
   $.path.services = Path.resolve($.path.root + '/lib/services');
   $.path.conf = Path.resolve($.path.root + '/etc');
+  $.path.docs = Path.resolve($.path.root + '/docs');
 
   $.constants = require($.path.conf + '/constants');
   internals.serverConf = require($.path.conf + '/server');

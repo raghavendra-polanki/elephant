@@ -1,0 +1,227 @@
+swagger: 2.0
+info:
+  description: Elephant APIs
+  version: 1.0.0
+  title: Elephant
+tags:
+- name: admin
+  description: APIs for Admin Panel
+schemes:
+- http
+- https
+paths:
+  /api/category/get:
+    get:
+      tags:
+        - admin
+      summary: Get category data
+      description: Get category data
+      operationId: getCategory
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: query
+          description: Category ID
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              data:
+                $ref: "#/definitions/Category"
+        400:
+          description: INVALID_ARGUMENT
+          schema:
+            $ref: "#/definitions/InvalidArgumentErrorResponse"
+        500:
+          description: INTERNAL
+          schema:
+            $ref: "#/definitions/InternalErrorResponse"
+  /api/category/list:
+    get:
+      tags:
+        - admin
+      summary: Get all categories data
+      description: Get all categories data
+      operationId: listCategories
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              data:
+                type: array
+                items:
+                  $ref: "#/definitions/Category"
+        500:
+          description: INTERNAL
+          schema:
+            $ref: "#/definitions/InternalErrorResponse"
+  /api/category/insert:
+    post:
+      tags:
+        - admin
+      summary: Insert new category
+      description: Insert new category
+      operationId: insertCategory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: name
+          description: names for category in different languages
+          required: true
+          schema:
+            $ref: "#/definitions/Names"
+        - in: body
+          name: is_root
+          description: Specify if the new category is a root level category
+          required: true
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1707290001
+        400:
+          description: INVALID_ARGUMENT
+          schema:
+            $ref: "#/definitions/InvalidArgumentErrorResponse"
+        409:
+          description: ALREADY_EXISTS
+          schema:
+            $ref: "#/definitions/AlreadyExistsErrorResponse"
+        500:
+          description: INTERNAL
+          schema:
+            $ref: "#/definitions/InternalErrorResponse"
+  /api/category/set_parents:
+    post:
+      tags:
+        - admin
+      summary: Set parents of a category
+      description: Set parents of a category
+      deprecated: true
+      operationId: setParents
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: Category ID to set parents for
+          required: true
+          type: string
+        - in: body
+          name: parents
+          description: Array of Category IDs to set as parents
+          required: true
+          type: array
+          items:
+            type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1707290001
+        400:
+          description: INVALID_ARGUMENT
+          schema:
+            $ref: "#/definitions/InvalidArgumentErrorResponse"
+        500:
+          description: INTERNAL
+          schema:
+            $ref: "#/definitions/InternalErrorResponse"
+definitions:
+  Category:
+    type: object
+    properties:
+      id:
+        type: string
+        example: 1707290001
+      name:
+        $ref: "#/definitions/Names"
+      is_root:
+        type: boolean
+        example: true
+      children:
+        type: array
+        items:
+          type: string
+        example:
+          - 1707280002
+          - 1707280003
+      created_at:
+        type: integer
+        format: int64
+      updated_at:
+        type: integer
+        format: int64
+  Names:
+    type: object
+    example:
+      english: name in english
+      hindi: name in hindi
+  InvalidArgumentErrorResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: INVALID_ARGUMENT
+      error:
+        type: string
+        example: need a valid id.
+  AlreadyExistsErrorResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: ALREADY_EXISTS
+      error:
+        type: string
+        example: object already exists.
+  InternalErrorResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: INTERNAL
+      error:
+        type: string
+        example: something went wrong.

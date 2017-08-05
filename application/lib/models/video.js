@@ -8,17 +8,45 @@ module.exports = new Mongoose.Schema({
   id: String, // not adding 'required' validator because validations will be
               // running before generating 'id' to avoid dangling ids in
               // database in case of validation fails.
-  name: {
-    type: Mongoose.Schema.Types.Mixed,
-    validate: $.utils.validation.validateMultiLangStrings,
-  },
-  is_root: {
+  is_active: {
     type: Boolean,
     required: true,
   },
-  children: [ // these are category_ids.
-    String,
-  ],
+  urls: {
+    type: [
+      {
+        url: String,
+        src: {
+          type: String,
+          enum: $.constants.videoSources,
+        },
+      },
+    ],
+    required: true,
+  },
+  title: {
+    type: Mongoose.Schema.Types.Mixed,
+    validate: $.utils.validation.validateMultiLangStrings,
+  },
+  desc: {
+    type: Mongoose.Schema.Types.Mixed,
+    validate: $.utils.validation.validateMultiLangStrings,
+  },
+  length: Number,
+  lang: {
+    type: String,
+    enum: $.constants.supportedLanguages,
+    required: true,
+  },
+  rating: {
+    type: String,
+    enum: $.constants.videoRatings,
+    required: true,
+  },
+  curator_id: {
+    type: String,
+    required: true,
+  },
   created_at: {
     type: Number,
     required: true,
@@ -29,7 +57,7 @@ module.exports = new Mongoose.Schema({
   },
 }, {
   bufferCommands: false, // disable command buffering.
-  collection: 'categories',
+  collection: 'videos',
   strict: 'throw',
   versionKey: false,
 });
@@ -37,5 +65,5 @@ module.exports = new Mongoose.Schema({
 /**
   * Indices:
   *
-  * db.categories.createIndex({"id": 1}, {unique: true});
+  * db.videos.createIndex({"id": 1}, {unique: true});
   */

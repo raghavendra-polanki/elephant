@@ -2,9 +2,13 @@
 
 module.exports = {
     connections: {
-      api: {
+      admin: {
         port: 17883,
-        label: 'api',
+        label: 'admin',
+      },
+      apidocs: {
+        port: 17884,
+        label: 'apidocs',
       },
     },
     plugins: {

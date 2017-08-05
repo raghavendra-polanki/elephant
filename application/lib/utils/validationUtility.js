@@ -31,7 +31,7 @@ externals.validateInstanceSchema = (instance) => {
   });
 };
 
-externals.validateSchemaNames = [
+externals.validateMultiLangStrings = [
   {
     validator: (data) => {
       if (!Object.keys(data).length) {
@@ -39,7 +39,7 @@ externals.validateSchemaNames = [
       }
       return true;
     },
-    message: 'Category must have atleast one valid name.',
+    message: 'Must have atleast one valid name.',
   },
   {
     validator: function(data) {
@@ -50,7 +50,7 @@ externals.validateSchemaNames = [
       }
       return true;
     },
-    message: 'Category names must be in one of the supported language.',
+    message: 'Name must be in one of the supported language.',
   },
   {
     validator: (data) => {
@@ -61,7 +61,7 @@ externals.validateSchemaNames = [
       }
       return false;
     },
-    message: 'Category must have a name in english.',
+    message: 'Must have a name in english.',
   },
 ];
 

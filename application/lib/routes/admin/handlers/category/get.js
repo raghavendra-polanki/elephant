@@ -12,7 +12,7 @@ const processRequest = async (req, res, next) => {
       return category;
     } else {
       $.log.Warning('need a valid category id');
-      res.status(500).json({
+      res.status(400).json({
         status: 'INVALID_ARGUMENT',
         error: 'need a valid category id.',
       });
