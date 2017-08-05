@@ -51,6 +51,45 @@ paths:
           description: INTERNAL
           schema:
             $ref: "#/definitions/InternalErrorResponse"
+  /v1/feeds/social`:
+    post:
+      tags:
+        - app
+      summary: Get social feed's videos
+      description: Get social feed's videos
+      operationId: feedsSocial
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User identification and athentication data"
+          required: true
+          schema:
+            $ref: "#/definitions/AppAuthData"
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              data:
+                type: array
+                items:
+                  $ref: "#/definitions/AppVideo"
+        403:
+          description: AUTHENTICATION_FAILED
+          schema:
+            $ref: "#/definitions/AuthenticationFailedErrorResponse"
+        500:
+          description: INTERNAL
+          schema:
+            $ref: "#/definitions/InternalErrorResponse"
   /api/category/get:
     get:
       tags:
