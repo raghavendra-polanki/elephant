@@ -40,6 +40,10 @@ paths:
           description: INVALID_ARGUMENT
           schema:
             $ref: "#/definitions/InvalidArgumentErrorResponse"
+        404:
+          description: NOT_FOUND
+          schema:
+            $ref: "#/definitions/NotFoundErrorResponse"
         500:
           description: INTERNAL
           schema:
@@ -207,6 +211,15 @@ definitions:
       error:
         type: string
         example: need a valid id.
+  NotFoundErrorResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: NOT_FOUND
+      error:
+        type: string
+        example: id not found
   AlreadyExistsErrorResponse:
     type: object
     properties:
