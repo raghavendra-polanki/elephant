@@ -11,6 +11,9 @@ install:
 run:
 	@echo Running make run...
 ifdef DOCKER
+ifeq ($(NODE_ENV), production)
+	@node application/index.js
+else
 	@echo Setting up environment...
 	@echo "Waiting for linked containers to start..."
 	@sleep 2
@@ -18,6 +21,7 @@ ifdef DOCKER
 	@nohup $(GULP) watch &
 	@echo Starting server via nodemon...
 	@$(NODEMON) -e js,json,yaml application/index.js
+endif
 else
 	@echo Error: Project is configured to only run inside a docker container!
 	@echo Refer to README.md for usage instructions.
