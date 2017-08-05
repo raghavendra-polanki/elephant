@@ -17,11 +17,11 @@ docker run -d -p 27017:27017 --restart unless-stopped -v $HOME/workspace/data/mo
 ### Start application container
 #### On Development
 ```
-docker run --rm -it -v $(pwd)/application:/elephant/application -v $(pwd)/package.json:/elephant/package.json --link mongo_container:mongo -p 17883:17883 -p 17884:17884 --name=elephant_1 elephant bash
+docker run --rm -it -v $(pwd)/application:/elephant/application -v $(pwd)/package.json:/elephant/package.json --link mongo_container:mongo -p 17883:17883 --name=elephant_1 elephant bash
 ```
 #### On Production
 ```
-docker run --rm -it -d --link mongo_container:mongo --env-file production.env -p 80:17883 --name=elephant_1 elephant
+docker run --rm -it -d --link mongo_container:mongo --env-file production.env -p 17883:17883 --name=elephant_1 elephant
 ```
 
 ### Mongo Backup:

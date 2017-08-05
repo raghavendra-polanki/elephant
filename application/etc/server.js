@@ -6,10 +6,6 @@ module.exports = {
         port: 17883,
         label: 'admin',
       },
-      apidocs: {
-        port: 17884,
-        label: 'apidocs',
-      },
     },
     plugins: {
       mongodb: {
