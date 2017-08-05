@@ -1,4 +1,4 @@
-swagger: 2.0
+swagger: "2.0"
 info:
   description: Elephant APIs
   version: 1.0.0
@@ -6,10 +6,51 @@ info:
 tags:
 - name: admin
   description: APIs for Admin Panel
+- name: app
+  description: APIs for app
 schemes:
 - http
 - https
 paths:
+  /v1/feeds/engine:
+    post:
+      tags:
+        - app
+      summary: Get main feed's videos
+      description: Get main feed's videos
+      operationId: feedsEngine
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User identification and athentication data"
+          required: true
+          schema:
+            $ref: "#/definitions/AppAuthData"
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              data:
+                type: array
+                items:
+                  $ref: "#/definitions/AppVideo"
+        403:
+          description: AUTHENTICATION_FAILED
+          schema:
+            $ref: "#/definitions/AuthenticationFailedErrorResponse"
+        500:
+          description: INTERNAL
+          schema:
+            $ref: "#/definitions/InternalErrorResponse"
   /api/category/get:
     get:
       tags:
@@ -40,6 +81,10 @@ paths:
           description: INVALID_ARGUMENT
           schema:
             $ref: "#/definitions/InvalidArgumentErrorResponse"
+        404:
+          description: NOT_FOUND
+          schema:
+            $ref: "#/definitions/NotFoundErrorResponse"
         500:
           description: INTERNAL
           schema:
@@ -198,6 +243,55 @@ definitions:
     example:
       english: name in english
       hindi: name in hindi
+  AppAuthData:
+    type: object
+    properties:
+      user_id:
+        type: string
+        example: "17072100132"
+      id_token:
+        type: string
+        example: fn87921b3jfd8921b34jhvuyf8923
+  AppVideo:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "170805000719"
+      is_active:
+        type: boolean
+        example: true
+      urls:
+        type: array
+        items:
+          type: object
+          properties:
+            url:
+              type: string
+              example: 12wsed4rf
+            src:
+              type: string
+              example: youtube
+      title:
+        $ref: "#/definitions/Names"
+      desc:
+        $ref: "#/definitions/Names"
+      length:
+        type: number
+        example: 345
+      lang:
+        type: array
+        items:
+          type: string
+        example:
+          - english
+          - hindi
+      rating:
+        type: string
+        example: ua
+      likes:
+        type: number
+        example: 13452
   InvalidArgumentErrorResponse:
     type: object
     properties:
@@ -207,6 +301,15 @@ definitions:
       error:
         type: string
         example: need a valid id.
+  NotFoundErrorResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: NOT_FOUND
+      error:
+        type: string
+        example: id not found
   AlreadyExistsErrorResponse:
     type: object
     properties:
@@ -216,6 +319,15 @@ definitions:
       error:
         type: string
         example: object already exists.
+  AuthenticationFailedErrorResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: AUTHENTICATION_FAILED
+      error:
+        type: string
+        example: need valid authentication data
   InternalErrorResponse:
     type: object
     properties:

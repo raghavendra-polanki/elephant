@@ -37,6 +37,15 @@ Router.use((req, res, next) => {
   next();
 });
 
+const SwaggerOptions = {
+    supportedSubmitMethods: [],
+    validatorUrl: null,
+  };
+
+Router.use('/api/docs',
+           SwaggerUi.serve,
+           SwaggerUi.setup(SwaggerDocument, false, SwaggerOptions));
+
 // Level 1 APIs.
 
 Router.post('/api/category/insert',
@@ -55,14 +64,5 @@ Router.get('/api/category/list',
 
 Router.get('/api/category/get',
   require($.path.routes + '/admin/handlers/category/get'));
-
-const SwaggerOptions = {
-    supportedSubmitMethods: [],
-    validatorUrl: null,
-  };
-
-Router.use('/apidocs',
-           SwaggerUi.serve,
-           SwaggerUi.setup(SwaggerDocument, false, SwaggerOptions));
 
 module.exports = Router;

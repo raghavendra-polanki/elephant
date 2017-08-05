@@ -9,18 +9,26 @@ const processRequest = async (req, res, next) => {
       let category = await $.model.Category.findOne({id: req.query.id},
                                                     {'_id': 0});
 
+      if (category === null) {
+        $.log.Warning('no such category exists');
+        res.status(404).json({
+          status: 'NOT_FOUND',
+          error: 'no such category exists',
+        });
+        return;
+      }
       return category;
     } else {
       $.log.Warning('need a valid category id');
       res.status(400).json({
         status: 'INVALID_ARGUMENT',
-        error: 'need a valid category id.',
+        error: 'need a valid category id',
       });
       return;
     }
   } catch (err) {
     $.log.Error(err);
-    res.status(500).json({status: 'INTERNAL', error: 'something went wrong.'});
+    res.status(500).json({status: 'INTERNAL', error: 'something went wrong'});
     return;
   }
 };
@@ -34,6 +42,6 @@ module.exports = function(req, res, next) {
   })
   .catch((err) => {
     $.log.Error(err);
-    res.status(500).json({status: 'INTERNAL', error: 'something went wrong.'});
+    res.status(500).json({status: 'INTERNAL', error: 'something went wrong'});
   });
 };

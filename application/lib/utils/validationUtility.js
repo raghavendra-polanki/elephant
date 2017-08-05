@@ -14,7 +14,7 @@ const compileValidationErrors = (error) => {
 
     return valErrors;
   } else {
-    return 'Error while validating schema.';
+    return 'Error while validating schema';
   }
 };
 
@@ -39,7 +39,7 @@ externals.validateMultiLangStrings = [
       }
       return true;
     },
-    message: 'Must have atleast one valid name.',
+    message: 'Must have atleast one valid name',
   },
   {
     validator: function(data) {
@@ -50,7 +50,7 @@ externals.validateMultiLangStrings = [
       }
       return true;
     },
-    message: 'Name must be in one of the supported language.',
+    message: 'Name must be in one of the supported language',
   },
   {
     validator: (data) => {
@@ -61,7 +61,7 @@ externals.validateMultiLangStrings = [
       }
       return false;
     },
-    message: 'Must have a name in english.',
+    message: 'Must have a name in english',
   },
 ];
 

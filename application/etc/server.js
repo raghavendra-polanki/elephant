@@ -6,6 +6,10 @@ module.exports = {
         port: 17883,
         label: 'admin',
       },
+      api: {
+        port: 17884,
+        label: 'api',
+      },
     },
     plugins: {
       mongodb: {
