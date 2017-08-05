@@ -33,10 +33,11 @@ module.exports = new Mongoose.Schema({
     validate: $.utils.validation.validateMultiLangStrings,
   },
   length: Number,
-  lang: {
-    type: String,
+  lang: { // not required for language agnostic vidoes.
+    type: [
+      String,
+    ],
     enum: $.constants.supportedLanguages,
-    required: true,
   },
   rating: {
     type: String,
