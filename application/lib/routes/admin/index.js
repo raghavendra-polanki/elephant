@@ -2,10 +2,15 @@
 
 const $ = require(__base + 'lib');
 
-const Express = require('express');
 const BodyParser = require('body-parser');
+const Express = require('express');
+const Fs = require('fs');
+const SwaggerUi = require('swagger-ui-express');
+const Yaml = require('js-yaml');
 
 const Router = Express.Router();
+const SwaggerDocument = Yaml.safeLoad(
+    Fs.readFileSync($.path.docs + '/openapi.yaml', 'utf8'));
 
 Router.use(BodyParser.json());
 Router.use(BodyParser.urlencoded({extended: true}));
@@ -50,5 +55,14 @@ Router.get('/api/category/list',
 
 Router.get('/api/category/get',
   require($.path.routes + '/admin/handlers/category/get'));
+
+const SwaggerOptions = {
+    supportedSubmitMethods: [],
+    validatorUrl: null,
+  };
+
+Router.use('/apidocs',
+           SwaggerUi.serve,
+           SwaggerUi.setup(SwaggerDocument, false, SwaggerOptions));
 
 module.exports = Router;
