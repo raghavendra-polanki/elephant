@@ -45,11 +45,11 @@ const processRequest = async (req, res, next) => {
     let existingCategory =
         await $.model.Category.findOne({'$or': orQuery}).exec();
     if (existingCategory !== null) {
-      $.log.Warning('category with similar name already exists.');
+      $.log.Warning('category with similar name already exists');
       res.status(409).json({
         status: 'ALREADY_EXISTS',
         error: 'a category with identical name already exists in atleast one ' +
-               'language.',
+               'language',
       });
       return;
     }
@@ -66,7 +66,7 @@ const processRequest = async (req, res, next) => {
     return categoryID;
   } catch (err) {
     $.log.Error(err);
-    res.status(500).json({status: 'INTERNAL', error: 'something went wrong.'});
+    res.status(500).json({status: 'INTERNAL', error: 'something went wrong'});
     return;
   }
 };
@@ -80,6 +80,6 @@ module.exports = function(req, res, next) {
   })
   .catch((err) => {
     $.log.Error(err);
-    res.status(500).json({status: 'INTERNAL', error: 'something went wrong.'});
+    res.status(500).json({status: 'INTERNAL', error: 'something went wrong'});
   });
 };
