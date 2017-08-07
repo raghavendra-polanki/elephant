@@ -166,17 +166,18 @@ paths:
       produces:
         - application/json
       parameters:
-        - in: body
-          name: name
-          description: names for category in different languages
+        - in: "body"
+          name: "body"
+          description: "Category Insert Data"
           required: true
           schema:
-            $ref: "#/definitions/Names"
-        - in: body
-          name: is_root
-          description: Specify if the new category is a root level category
-          required: true
-          type: boolean
+            type: object
+            properties:
+              name:
+                $ref: "#/definitions/Names"
+              is_root:
+                type: boolean
+                example: true
       responses:
         200:
           description: OK
@@ -217,18 +218,23 @@ paths:
       produces:
         - application/json
       parameters:
-        - in: body
-          name: id
-          description: Category ID to set parents for
+        - in: "body"
+          name: "body"
+          description: "Category Set Parent Data"
           required: true
-          type: string
-        - in: body
-          name: parents
-          description: Array of Category IDs to set as parents
-          required: true
-          type: array
-          items:
-            type: string
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 1707290001
+              parents:
+                type: array
+                items:
+                  type: string
+                example:
+                  - 1707280002
+                  - 1707280003
       responses:
         200:
           description: OK
