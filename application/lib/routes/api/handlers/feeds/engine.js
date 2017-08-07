@@ -10,18 +10,13 @@ let yuvraj = {
     id: 'wSwSaF2z124',
     channel: 'UClLB-UeOYara5Q1yMmyjGwQ',
   },
-  title: {
-    english: 'Yuvraj Singh 6 Sixes In An Over',
-  },
-  desc: {
-    english: 'Yuvraj Singh Hits 6 Sixes in One Over against England ' +
-             'in T20',
-  },
+  title: 'Yuvraj Singh 6 Sixes In An Over',
+  desc: 'Yuvraj Singh Hits 6 Sixes in One Over against England in T20',
   length: 365,
-  lang: ['english'],
   categories: [
     'sports',
     'cricket',
+    'english',
   ],
   rating: 'u',
   likes: 15493,
@@ -35,17 +30,13 @@ let blockChain = {
     id: '4sm5LNqL5j0',
     channel: 'UCTLC-I9GPgKQqr6CJvnalnA',
   },
-  title: {
-    english: 'Block Chain Technology',
-  },
-  desc: {
-    english: 'Report on the future of distributed ledger (or block ' +
-             'chain) technology',
-  },
+  title: 'Block Chain Technology',
+  desc: 'Report on the future of distributed ledger (or block chain) ' +
+        'technology',
   length: 314,
-  lang: ['english'],
   categories: [
     'technology',
+    'english',
   ],
   rating: 'u',
   likes: 95,
@@ -59,20 +50,15 @@ let lorde = {
     id: 'J0DjcsK_-HY',
     channel: 'UCVrPiUtl29kULN2HIAm244Q',
   },
-  title: {
-    english: 'Lorde - Perfect Places',
-  },
-  desc: {
-    english: 'Official video for "Perfect Places" off the album ' +
-             '"Melodrama"',
-  },
+  title: 'Lorde - Perfect Places',
+  desc: 'Official video for "Perfect Places" off the album "Melodrama"',
   length: 258,
-  lang: ['english'],
   categories: [
     'music',
     'international',
+    'english',
   ],
-  rating: 'u',
+  rating: 'ua',
   likes: 189147,
 };
 

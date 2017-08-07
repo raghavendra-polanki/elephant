@@ -306,31 +306,34 @@ definitions:
       is_active:
         type: boolean
         example: true
-      urls:
-        type: array
-        items:
-          type: object
-          properties:
-            url:
-              type: string
-              example: 12wsed4rf
-            src:
-              type: string
-              example: youtube
+      url:
+        type: object
+        properties:
+          src:
+            type: string
+            example: youtube
+          id:
+            type: string
+            example: 12wsed4rf
+          channel:
+            type: string
+            example: UCTLC-I9GPgKQqr6CJvnalnA
       title:
-        $ref: "#/definitions/Names"
+        type: string
+        example: Video Title
       desc:
-        $ref: "#/definitions/Names"
+        type: string
+        example: Video Description
       length:
         type: number
         example: 345
-      lang:
+      categories:
         type: array
         items:
           type: string
         example:
-          - english
-          - hindi
+          - technology
+          - science
       rating:
         type: string
         example: ua
