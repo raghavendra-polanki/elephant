@@ -51,7 +51,7 @@ paths:
           description: INTERNAL
           schema:
             $ref: "#/definitions/InternalErrorResponse"
-  /v1/feeds/social`:
+  /v1/feeds/social:
     post:
       tags:
         - app
