@@ -90,7 +90,7 @@ let feeds = [
 
 const processRequest = async (req, res, next) => {
   try {
-    if (req.body && req.body.user_id && req.body.id_token) {
+    if (req.body && req.body.user_id && req.body.id_token && req.body.lang) {
       return feeds;
     } else {
       res.status(401).json({

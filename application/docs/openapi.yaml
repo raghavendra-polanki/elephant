@@ -297,6 +297,9 @@ definitions:
       id_token:
         type: string
         example: fn87921b3jfd8921b34jhvuyf8923
+      lang:
+        type: string
+        example: english
   AppVideo:
     type: object
     properties:
