@@ -43,10 +43,10 @@ paths:
                 type: array
                 items:
                   $ref: "#/definitions/AppVideo"
-        403:
-          description: AUTHENTICATION_FAILED
+        401:
+          description: UNAUTHENTICATED
           schema:
-            $ref: "#/definitions/AuthenticationFailedErrorResponse"
+            $ref: "#/definitions/UnAuthenticatedErrorResponse"
         500:
           description: INTERNAL
           schema:
@@ -82,10 +82,10 @@ paths:
                 type: array
                 items:
                   $ref: "#/definitions/AppVideo"
-        403:
-          description: AUTHENTICATION_FAILED
+        401:
+          description: UNAUTHENTICATED
           schema:
-            $ref: "#/definitions/AuthenticationFailedErrorResponse"
+            $ref: "#/definitions/UnAuthenticatedErrorResponse"
         500:
           description: INTERNAL
           schema:
@@ -297,6 +297,9 @@ definitions:
       id_token:
         type: string
         example: fn87921b3jfd8921b34jhvuyf8923
+      lang:
+        type: string
+        example: english
   AppVideo:
     type: object
     properties:
@@ -315,9 +318,12 @@ definitions:
           id:
             type: string
             example: 12wsed4rf
-          channel:
+          channel_id:
             type: string
             example: UCTLC-I9GPgKQqr6CJvnalnA
+          channel_name:
+            type: string
+            example: MTV
       title:
         type: string
         example: Video Title
@@ -367,12 +373,12 @@ definitions:
       error:
         type: string
         example: object already exists.
-  AuthenticationFailedErrorResponse:
+  UnAuthenticatedErrorResponse:
     type: object
     properties:
       status:
         type: string
-        example: AUTHENTICATION_FAILED
+        example: UNAUTHENTICATED
       error:
         type: string
         example: need valid authentication data
