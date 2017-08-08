@@ -90,8 +90,8 @@ const processRequest = async (req, res, next) => {
     if (req.body && req.body.user_id && req.body.id_token) {
       return feeds;
     } else {
-      res.status(403).json({
-        status: 'AUTHENTICATION_FAILED',
+      res.status(401).json({
+        status: 'UNAUTHENTICATED',
         error: 'need valid authentication data',
       });
       return;
