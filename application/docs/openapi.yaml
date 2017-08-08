@@ -43,10 +43,10 @@ paths:
                 type: array
                 items:
                   $ref: "#/definitions/AppVideo"
-        403:
-          description: AUTHENTICATION_FAILED
+        401:
+          description: UNAUTHENTICATED
           schema:
-            $ref: "#/definitions/AuthenticationFailedErrorResponse"
+            $ref: "#/definitions/UnAuthenticatedErrorResponse"
         500:
           description: INTERNAL
           schema:
@@ -82,10 +82,10 @@ paths:
                 type: array
                 items:
                   $ref: "#/definitions/AppVideo"
-        403:
-          description: AUTHENTICATION_FAILED
+        401:
+          description: UNAUTHENTICATED
           schema:
-            $ref: "#/definitions/AuthenticationFailedErrorResponse"
+            $ref: "#/definitions/UnAuthenticatedErrorResponse"
         500:
           description: INTERNAL
           schema:
@@ -367,12 +367,12 @@ definitions:
       error:
         type: string
         example: object already exists.
-  AuthenticationFailedErrorResponse:
+  UnAuthenticatedErrorResponse:
     type: object
     properties:
       status:
         type: string
-        example: AUTHENTICATION_FAILED
+        example: UNAUTHENTICATED
       error:
         type: string
         example: need valid authentication data
