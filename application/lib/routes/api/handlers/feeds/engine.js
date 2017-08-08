@@ -8,7 +8,8 @@ let yuvraj = {
   url: {
     src: 'youtube',
     id: 'wSwSaF2z124',
-    channel: 'UClLB-UeOYara5Q1yMmyjGwQ',
+    channel_id: 'UClLB-UeOYara5Q1yMmyjGwQ',
+    channel_name: 'Jyoti Sharma',
   },
   title: 'Yuvraj Singh 6 Sixes In An Over',
   desc: 'Yuvraj Singh Hits 6 Sixes in One Over against England in T20',
@@ -28,7 +29,8 @@ let blockChain = {
   url: {
     src: 'youtube',
     id: '4sm5LNqL5j0',
-    channel: 'UCTLC-I9GPgKQqr6CJvnalnA',
+    channel_id: 'UCTLC-I9GPgKQqr6CJvnalnA',
+    channel_name: 'GO-Science',
   },
   title: 'Block Chain Technology',
   desc: 'Report on the future of distributed ledger (or block chain) ' +
@@ -48,7 +50,8 @@ let lorde = {
   url: {
     src: 'youtube',
     id: 'J0DjcsK_-HY',
-    channel: 'UCVrPiUtl29kULN2HIAm244Q',
+    channel_id: 'UCVrPiUtl29kULN2HIAm244Q',
+    channel_name: 'LordeVEVO',
   },
   title: 'Lorde - Perfect Places',
   desc: 'Official video for "Perfect Places" off the album "Melodrama"',

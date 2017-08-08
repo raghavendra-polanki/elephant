@@ -315,9 +315,12 @@ definitions:
           id:
             type: string
             example: 12wsed4rf
-          channel:
+          channel_id:
             type: string
             example: UCTLC-I9GPgKQqr6CJvnalnA
+          channel_name:
+            type: string
+            example: MTV
       title:
         type: string
         example: Video Title
