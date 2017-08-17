@@ -258,6 +258,78 @@ paths:
           description: INTERNAL
           schema:
             $ref: "#/definitions/InternalErrorResponse"
+  /api/video/insert:
+    post:
+      tags:
+        - admin
+      summary: Insert new video
+      description: Insert new video
+      operationId: insertVideo
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Video Insert Data"
+          required: true
+          schema:
+            type: object
+            properties:
+              is_active:
+                type: boolean
+                example: true
+              url:
+                type: object
+                properties:
+                  src:
+                    type: string
+                    enum: [youtube]
+                    example: youtube
+                  id:
+                    type: string
+                    example: 12wsed4rf
+                  channel_id:
+                    type: string
+                    example: UCTLC-I9GPgKQqr6CJvnalnA
+                  channel_name:
+                    type: string
+                    example: MTV
+              title:
+                $ref: "#/definitions/Names"
+              desc:
+                $ref: "#/definitions/Names"
+              length:
+                type: number
+                example: 345
+              rating:
+                type: string
+                enum: [u, ua, a]
+                example: ua
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 17081700004
+        400:
+          description: INVALID_ARGUMENT
+          schema:
+            $ref: "#/definitions/InvalidArgumentErrorResponse"
+        500:
+          description: INTERNAL
+          schema:
+            $ref: "#/definitions/InternalErrorResponse"
 definitions:
   Category:
     type: object
@@ -286,8 +358,8 @@ definitions:
   Names:
     type: object
     example:
-      english: name in english
-      hindi: name in hindi
+      english: text in english
+      hindi: text in hindi
   AppAuthData:
     type: object
     properties:
