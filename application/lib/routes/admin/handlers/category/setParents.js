@@ -14,6 +14,8 @@ const processRequest = async (req, res, next) => {
     let requestParameters = req.body;
     const {error, value} = Joi.validate(requestParameters, requestSchema);
     if (error != null) {
+      $.log.Warningf('validation error: %s in %j', error.message,
+                     requestParameters);
       res.status(400).json({status: 'INVALID_ARGUMENT', error: error.message});
       return;
     }
