@@ -84,7 +84,7 @@ const registerPlugins = function() {
   console.log('\n============ Registering plugins... ============');
 
   return new $.promise((resolve, reject) => {
-    Async.forEachOfSeries(internals.serverConf.plugins,
+    Async.eachOfSeries(internals.serverConf.plugins,
     function(pluginParams, pluginName, callback) {
       console.log('\n===== Registering plugin: ' + pluginName + ' =====');
 

@@ -13,15 +13,8 @@ module.exports = new Mongoose.Schema({
     required: true,
   },
   urls: {
-    type: [
-      {
-        url: String,
-        src: {
-          type: String,
-          enum: $.constants.videoSources,
-        },
-      },
-    ],
+    type: String,
+    enum: $.constants.videoSources,
     required: true,
   },
   title: {
@@ -32,12 +25,19 @@ module.exports = new Mongoose.Schema({
     type: Mongoose.Schema.Types.Mixed,
     validate: $.utils.validation.validateMultiLangStrings,
   },
-  length: Number,
-  lang: { // not required for language agnostic vidoes.
-    type: [
-      String,
-    ],
-    enum: $.constants.supportedLanguages,
+  length: {
+    type: Number,
+    required: true,
+  },
+  likes: {
+    src: {
+      type: Number,
+      required: true,
+    },
+    app: {
+      type: Number,
+      required: true,
+    },
   },
   rating: {
     type: String,
