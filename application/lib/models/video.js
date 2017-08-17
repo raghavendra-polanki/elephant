@@ -12,10 +12,24 @@ module.exports = new Mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  urls: {
-    type: String,
-    enum: $.constants.videoSources,
-    required: true,
+  url: {
+    src: {
+      type: String,
+      enum: $.constants.videoSources,
+      required: true,
+    },
+    id: {
+      type: String,
+      required: true,
+    },
+    channel_id: {
+      type: String,
+      required: true,
+    },
+    channel_name: {
+      type: String,
+      required: true,
+    },
   },
   title: {
     type: Mongoose.Schema.Types.Mixed,
